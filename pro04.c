@@ -4,14 +4,14 @@ int main()
 
 {
     int n, i, a, b, c, d, e;
-    scanf("%d\n",&n);
-
+    scanf("%d",&n);
+    printf("input five numbers:");
     for(i=0;i<n;i++)
     {
         scanf("%d %d %d %d %d", &a, &b, &c, &d, &e);
 
         //checking max
-
+        printf("biggest number:");
         if(a>b&&a>c&&a>d&&a>e)
         {
             printf("%d ",a);
@@ -34,7 +34,7 @@ int main()
         }
 
         //checking minimum
-
+        printf("smallest number:");
          if(a<b&&a<c&&a<d&&a<e)
         {
             printf("%d ",a);
