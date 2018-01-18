@@ -4,10 +4,12 @@ int main()
 
 {
     int n, i, a, b, c, d, e;
+    printf("set of numbers:"); 
     scanf("%d",&n);
-    printf("input five numbers:");
+   
     for(i=0;i<n;i++)
     {
+         printf("input five numbers:");
         scanf("%d %d %d %d %d", &a, &b, &c, &d, &e);
 
         //checking max
@@ -55,6 +57,7 @@ int main()
         {
             printf("%d",e);
         }
+        printf("\n");
 
     }
     return 0;
