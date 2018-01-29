@@ -3,7 +3,7 @@
 int main()
 {
     int i;
-    char a[100];  //initialize 1 d array
+    char a[100];  //initialize 1 dimensional array
     printf("You:");
     for (i=0;i<100;i++)
     {
