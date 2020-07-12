@@ -25,40 +25,17 @@ int main()
     cin>>t;
     while(t--)
     {
-        int n;
+        int n, x, sum=0;
         cin>>n;
-        vi v;
-        bool ok=false, nok=false;
-        int cnt=0;
-        int d=n;
-        while(d--)
+        For(n)
         {
-            int c;
-            cin>>c;
-            v.pb(c);
+            cin>>x;
+            sum+=x;
         }
-        int l, r;
-        for(int i=0;i<n;i++)
-        {
-            if(v[i]==i+1)
-                ok=true;
-            else
-            {
-                nok=true;
-            }
-        }
-        if(ok && !nok)
-        {
-            cout<<"0\n";
-        }
-        else if(!ok && nok)
-        {
-            cout<<"1\n";
-        }
+        if((n*(n+1))/2==sum)
+            cout<<"YES\n";
         else
-        {
-            cout<<"2\n";
-        }
+            cout<<"NO\n";
     }
     return 0;
 }
