@@ -6,6 +6,7 @@ typedef unsigned int uint;
 typedef vector<string> vs;
 typedef vector<int> vi;
 typedef set<char> sc;
+typedef set<int> si;
 typedef pair<int, int> pii;
 
 #define mp 				make_pair
@@ -22,10 +23,32 @@ typedef pair<int, int> pii;
 
 int main()
 {
-	int t; cin>>t;
+	int t,x; cin>>t;
+	int flag[51];
 	while(t--)
 	{
-		
+		int n;
+		cin>>n;
+		n*=2;
+		int arr[n];
+		int v[50];
+		int flag[51]={};
+		int j=0;
+		for(int i=0;i<n;i++)
+		{
+			cin>>x;
+			if(flag[x]==0)
+			{
+				v[j]=x;
+				j++;
+				flag[x]=1;
+			}
+		}
+		for(int i=0;i<j;i++)
+		{
+			cout<<v[i]<<" ";
+		}
+		cout<<endl;
 	}
 	return 0;
 }
