@@ -75,41 +75,53 @@ def snowFlake(len):
 
 def drawOnCommand():
     while True:
+        x , y = pos()
+        if x>=0:
+            if y>=0:
+                pencolor('blue')
+            else:
+                pencolor('red')
+        else:
+            if y>=0:
+                pencolor('green')
+            else:
+                pencolor('orange')
+
         if kb.is_pressed('q'):
             seth(135)
-            fd(10)
+            fd(5)
         if kb.is_pressed('e'):
             seth(45)
-            fd(10)
+            fd(5)
         if kb.is_pressed('z'):
             seth(225)
-            fd(10)
+            fd(5)
         if kb.is_pressed('x'):
             seth(315)
-            fd(10)
+            fd(5)
         if kb.is_pressed('w'):
             seth(90)
-            fd(10)
+            fd(5)
         if kb.is_pressed('a'):
             seth(180)
-            fd(10)
+            fd(5)
         if kb.is_pressed('s'):
             seth(270)
-            fd(10)
+            fd(5)
         if kb.is_pressed('d'):
             seth(0)
-            fd(10)
+            fd(5)
         if kb.is_pressed('o'):
             penup()
         if kb.is_pressed('i'):
             pendown()
-        if kb.is_pressed('g'):
+        if kb.is_pressed('esc'):
             break
         
 
 pensize(3)
 pencolor('red')
-speed(2)
+speed(0)
 colors = ['yellow', 'gold', 'orange', 'red', 'maroon', 'violet', 'magenta', 'purple', 'navy', 'blue', 'skyblue', 'cyan', 'turquoise', 'lightgreen', 'green', 'darkgreen', 'chocolate', 'brown', 'black', 'gray']
 # colorBomb()
 # rainbow()
@@ -122,4 +134,4 @@ colors = ['yellow', 'gold', 'orange', 'red', 'maroon', 'violet', 'magenta', 'pur
 # snowFlake(30)
 
 drawOnCommand()
-exitonclick()
+# exitonclick()
