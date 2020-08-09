@@ -76,39 +76,50 @@ def snowFlake(len):
 def drawOnCommand():
     while True:
         x , y = pos()
-        if x>=0:
-            if y>=0:
+        if x>100:
+            if y>100:
                 pencolor('blue')
+            elif y<-100:
+                pencolor('maroon')
             else:
                 pencolor('red')
-        else:
-            if y>=0:
+        elif x<-100:
+            if y>100:
                 pencolor('green')
+            elif y<-100:
+                pencolor('pink')
             else:
                 pencolor('orange')
+        else:
+            if y>100:
+                pencolor('magenta')
+            elif y<-100:
+                pencolor('cyan')
+            else:
+                pencolor('chocolate')
 
-        if kb.is_pressed('q'):
+        if kb.is_pressed('7'):
             seth(135)
             fd(5)
-        if kb.is_pressed('e'):
+        if kb.is_pressed('9'):
             seth(45)
             fd(5)
-        if kb.is_pressed('z'):
+        if kb.is_pressed('1'):
             seth(225)
             fd(5)
-        if kb.is_pressed('x'):
+        if kb.is_pressed('3'):
             seth(315)
             fd(5)
-        if kb.is_pressed('w'):
+        if kb.is_pressed('8'):
             seth(90)
             fd(5)
-        if kb.is_pressed('a'):
+        if kb.is_pressed('4'):
             seth(180)
             fd(5)
-        if kb.is_pressed('s'):
+        if kb.is_pressed('2'):
             seth(270)
             fd(5)
-        if kb.is_pressed('d'):
+        if kb.is_pressed('6'):
             seth(0)
             fd(5)
         if kb.is_pressed('o'):
@@ -117,9 +128,10 @@ def drawOnCommand():
             pendown()
         if kb.is_pressed('esc'):
             break
+        print(pos());
         
 
-pensize(3)
+pensize(2)
 pencolor('red')
 speed(0)
 colors = ['yellow', 'gold', 'orange', 'red', 'maroon', 'violet', 'magenta', 'purple', 'navy', 'blue', 'skyblue', 'cyan', 'turquoise', 'lightgreen', 'green', 'darkgreen', 'chocolate', 'brown', 'black', 'gray']
