@@ -43,7 +43,7 @@ def spiralBomb(density):
         for c in colors:
             drawSquare(200, c)
             lt(turn/density)
-
+            
 
 def polygon(len, sides):
     angle = 360/sides
@@ -53,24 +53,26 @@ def polygon(len, sides):
 
 
 def snowFlake(len):
-    for i in range(24):
-        pencolor(colors[i%20])
-        for _ in range(5):
-            for _ in range(4):
+    r1, r2, deg = 6, 6, 90
+    for i in range(8):
+        # pencolor(colors[i%20])
+        
+        for _ in range(r1):
+            for _ in range(r2):
                 fd(len)
-                lt(60)
-            lt(120)
-        lt(30)
-        # fd(len)
-        rt(30)
-        for _ in range(5):
-            for _ in range(4):
+                lt(deg)
+            lt(deg)
+        # lt(30)
+        fd(len)
+        # rt(15)
+        for _ in range(r1):
+            for _ in range(r2):
                 fd(len)
-                rt(60)
-            rt(120)
-        # rt(30)
-        fd(2*len)
-        lt(15)
+                rt(deg)
+            rt(deg)
+        rt(deg)
+        fd(len)
+        # lt(30)
 
 
 def drawOnCommand():
@@ -89,7 +91,7 @@ def drawOnCommand():
             elif y<-100:
                 pencolor('pink')
             else:
-                pencolor('orange')
+                pencolor('orange')                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
         else:
             if y>100:
                 pencolor('magenta')
@@ -128,14 +130,14 @@ def drawOnCommand():
             pendown()
         if kb.is_pressed('esc'):
             break
-        print(pos());
+        print(pos())
         
 
 pensize(2)
 pencolor('red')
 speed(0)
 colors = ['yellow', 'gold', 'orange', 'red', 'maroon', 'violet', 'magenta', 'purple', 'navy', 'blue', 'skyblue', 'cyan', 'turquoise', 'lightgreen', 'green', 'darkgreen', 'chocolate', 'brown', 'black', 'gray']
-# colorBomb()
+colorBomb()
 # rainbow()
 # spiralBomb(5)
 # polygon(20,50)
@@ -145,5 +147,12 @@ colors = ['yellow', 'gold', 'orange', 'red', 'maroon', 'violet', 'magenta', 'pur
 # print(len(colors))
 # snowFlake(30)
 
-drawOnCommand()
-# exitonclick()
+# drawOnCommand()
+
+# def drawO():
+#     for _ in range(8):
+#         fd(50)
+#         lt(45)
+
+# drawO()
+exitonclick()
