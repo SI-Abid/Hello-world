@@ -1,0 +1,20 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "${default}",
+                "/usr/include/c++/10",
+                "/usr/include/x86_64-linux-gnu/c++/7",
+                "/usr/include/x86_64-linux-gnu",
+                "/usr/include/c++/10/tr1",
+                "/usr/include/linux"
+            ],
+            "defines": [],
+            "cStandard": "gnu17",
+            "cppStandard": "gnu++14",
+            "intelliSenseMode": "linux-gcc-x64"
+        }
+    ],
+    "version": 4
+}
