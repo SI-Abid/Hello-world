@@ -29,7 +29,7 @@ void solve()
     int ar[32];
     for (ll i = 0; i < n; i++)
     {
-        cin v;
+        cin >> v;
         ar[(int)log2(v)]++;
     }
     int cnt=0, used=0;
