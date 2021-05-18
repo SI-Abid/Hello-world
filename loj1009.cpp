@@ -10,6 +10,7 @@ using namespace std;
 #define be begin()
 #define en end()
 #define all(x) (x).begin(),(x).end()
+#define out cout<<setprecision(20)
 
 typedef vector<int> vi;
 typedef vector<ll> vll;
@@ -20,30 +21,37 @@ typedef pair<ll, ll> pll;
 const int MOD = 1e9 + 7;
 const int INF = 1e9;
 
+vector<int> adj[100005];
+bool vis[100005];
+
+
+void bfs(int r)
+{
+    
+}
+
 int main(int argc, char* argv[])
 {
     if(argc == 2 or argc == 3) freopen(argv[1], "r", stdin);
     if(argc == 3) freopen(argv[2], "w", stdout);
     ios::sync_with_stdio(false);
-    
-    int t;
-    cin>>t;
-    for(int i=1; i<=t; i++)
+
+    int t, it=1;
+    for(cin>>t;t;t--)
     {
-        ll ans;
-        int a,b,c;
-        cin>>a>>b>>c;
-        int x,y,z;
-        x=min(a,min(b,c));
-        z=max(a,max(b,c));
-        y=a+b+c-x-z;
-        ans=x*x+y*y;     
-        cout<<"Case "<<i<<": ";
-        if(ans==z*z)
-            cout<<"yes";
-        else 
-            cout<<"no";
-        cout<<endl;
+        cout<<"Case "<<it++<<": ";
+        int n;
+        cin>>n;
+        vector<int> edge(n+1);
+        for (int i = 0; i < n; i++)
+        {
+            int u, v;
+            cin>>u>>v;
+            adj[u].pb(v);
+            adj[v].pb(u);
+        }
+        
+        bfs(0);
     }
     return 0;
 }
