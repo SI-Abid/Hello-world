@@ -46,15 +46,13 @@ int main(int argc, char* argv[])
         {
             cout<<1<<endl;
         }
+        else if(ar[0]==n && ar[n-1]==1)
+        {
+            cout<<3<<endl;
+        }
         else
         {
-            reverse(all(ar));
-            if(is_sorted(all(ar)))
-            {
-                cout<<3<<endl;
-            }
-            else
-                cout<<2<<endl;
+            cout<<2<<endl;
         }
         
     }    
