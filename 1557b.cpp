@@ -35,20 +35,19 @@ int main(int argc, char* argv[])
     {
         int n, k;
         cin >> n >> k;
-        vector<int> a(n);
-        for(int i = 0; i < n; i++) cin >> a[i];
-        int sub=0;
-        for(int i = 0; i < n-1; i++)
-        {
-            sub++;
-            while(a[i] <= a[i+1] && i < n-1)
-                i++;
-        }
-        cout << sub << endl;
-        if(k>=sub) cout << "YES" << endl;
+        vector<pii> a(n);
+        for(int i = 0; i < n; i++) cin >> a[i].F, a[i].S = i;
+
+        sort(all(a));
+        int ans = 1;
+		for (int i = 1; i < n; i++)
+			if (a[i - 1].second + 1 != a[i].second)
+				ans++;
+        // cout << ans << endl;
+        if(ans<=k) cout << "YES" << endl;
         else cout << "NO" << endl;
     }    
     
     return 0;
 }
-//WA2
+//WA2~AC
