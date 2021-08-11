@@ -1,5 +1,5 @@
 # Hello-world
-**This is the first repo in github**
+### **This is the first repo in github**
 ---
 > It contains all my code from codeforces, Light-oj, vjudge, and others
 
