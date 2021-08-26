@@ -22,7 +22,7 @@ int main()
     while(ifile>>s)
         st.insert(convert(s));
     
-    cout<<st.size()<<endl;
+    cout<<"Total number of unique word used: "<<st.size()<<endl;
     for(auto x:st)
         ofile<<x<<endl;
     
