@@ -133,11 +133,11 @@ def drawOnCommand():
         print(pos())
         
 
-pensize(2)
-pencolor('red')
-speed(0)
-colors = ['yellow', 'gold', 'orange', 'red', 'maroon', 'violet', 'magenta', 'purple', 'navy', 'blue', 'skyblue', 'cyan', 'turquoise', 'lightgreen', 'green', 'darkgreen', 'chocolate', 'brown', 'black', 'gray']
-colorBomb()
+# pensize(2)
+# pencolor('red')
+# speed(0)
+# colors = ['yellow', 'gold', 'orange', 'red', 'maroon', 'violet', 'magenta', 'purple', 'navy', 'blue', 'skyblue', 'cyan', 'turquoise', 'lightgreen', 'green', 'darkgreen', 'chocolate', 'brown', 'black', 'gray']
+# colorBomb()
 # rainbow()
 # spiralBomb(5)
 # polygon(20,50)
@@ -147,7 +147,7 @@ colorBomb()
 # print(len(colors))
 # snowFlake(30)
 
-# drawOnCommand()
+drawOnCommand()
 
 # def drawO():
 #     for _ in range(8):

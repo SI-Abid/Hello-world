@@ -9,7 +9,10 @@ using namespace std;
 #define S second
 #define be begin()
 #define en end()
+#define rb rbegin()
+#define re rend()
 #define all(x) (x).begin(),(x).end()
+#define out cout<<setprecision(20)
 
 typedef vector<int> vi;
 typedef vector<ll> vll;
@@ -26,28 +29,21 @@ int main(int argc, char* argv[])
     if(argc == 3) freopen(argv[2], "w", stdout);
     ios::sync_with_stdio(false);
 
-    vi v;
-    for(int i = 2; i <= 100000; i++) {
-        bool ok = true;
-        for(int j = 2; j * j <= i; j++) {
-            if(i % j == 0) {
-                ok = false;
-                break;
-            }
-        }
-        if(ok)  v.pb(i);
-    }
-    
-    int t;
-    for(cin>>t;t;t--)
+    int n, k;
+    cin>>n>>k;
+    int ans=1<<31;
+    while(n--)
     {
-        ll d;
-        cin>>d;
-        auto p1 = lower_bound(all(v),d+1)-v.be;
-        auto p2 = lower_bound(all(v),v[p1]+d)-v.be;
-        cout<<v[p1]*v[p2]<<endl;
-        // cout<<*v.be<<endl;
+        int f,t;
+        cin>>f>>t;
+        if(t>k)
+        {
+            ans=max(ans,f-t+k);
+        }
+        else
+            ans=max(ans,f);
     }
-    
+    cout<<ans<<endl;
+
     return 0;
 }

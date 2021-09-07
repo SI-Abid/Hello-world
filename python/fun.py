@@ -2,12 +2,12 @@ import cv2
 import numpy as np
 import pyautogui
 
-cap = cv2.VideoCapture(1)
+cap = cv2.VideoCapture(0)
 
 yellow_lower = np.array([22, 93, 0])
 yellow_upper = np.array([45, 255, 255])
 prev_y = 0
-
+  
 while True:
     ret, frame = cap.read()
     hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
