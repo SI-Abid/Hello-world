@@ -1,24 +1,16 @@
-from turtle import *
-from numpy import random
+def read_self(file_path : str):
+    with open(file_path, "r") as f:
+        for line in f.readlines():
+            print(line)
 
-speed(0)
-colors = ['yellow', 'gold', 'orange', 'red', 'maroon', 'violet', 'magenta', 'purple', 'navy', 'blue', 'skyblue', 'cyan', 'turquoise', 'lightgreen', 'green', 'darkgreen', 'chocolate', 'brown', 'black', 'gray']
+def count_lines(file_path : str) -> int:
+    with open(file_path, "r") as f:
+        return len(f.readlines())
 
-ang = [-10,20,10,-30,-5]
+def main():
+    # print(count_lines(__file__.replace("main","fun")))
+    # print(count_lines(__file__.replace("main","draw")))
+    read_self(__file__)
 
-i = 0
-
-hideturtle()
-
-for i in range(30):
-    color(colors[i%len(colors)])
-    for x in range(4):
-        circle(random.randint(10,100))
-        lt(90)
-
-    for y in range(4):
-        circle(random.randint(10,100))
-        lt(90)
-            
-
-exitonclick()
+if __name__=="__main__":
+    main()
