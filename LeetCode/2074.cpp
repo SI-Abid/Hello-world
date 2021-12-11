@@ -26,11 +26,13 @@ struct ListNode
     ListNode() : val(0), next(nullptr) {}
     ListNode(int x) : val(x), next(nullptr) {}
     ListNode(int x, ListNode *next) : val(x), next(next) {}
+    // insert at the end of the list
     void insert(int x)
     {
-        ListNode *temp = new ListNode(x);
-        temp->next = this->next;
-        this->next = temp;
+        ListNode *temp = this;
+        while (temp->next != nullptr)
+            temp = temp->next;
+        temp->next = new ListNode(x);
     }
     void print()
     {
@@ -46,74 +48,54 @@ struct ListNode
 class Solution
 {
 public:
-    int getLength(ListNode *head)
-    {
-        int len = 0;
-        while (head)
-        {
-            len++;
-            head = head->next;
-        }
-        return len;
-    }
-    ListNode *reverseArrayToList(vector<int> &arr)
-    {
-        int len = arr.size();
-        ListNode *head = new ListNode(arr[len - 1]);
-        ListNode *temp = head;
-        for (int i = len - 2; i >= 0; i--)
-        {
-            temp->next = new ListNode(arr[i]);
-            temp = temp->next;
-        }
-        return head;
-    }
     ListNode *reverseEvenLengthGroups(ListNode *head)
     {
-        int len = getLength(head);
-        ListNode *temp = head;
-        ListNode *reverseHead = NULL;
-        // temp = temp->next;
-        int cnt = 1;
-        while (cnt <= len)
+        vector<int> v;
+        while(head)
         {
-            if (cnt % 2 == 0)
+            v.push_back(head->val);
+            head = head->next;
+        }
+        int n = v.size();
+        int c = 1;
+        for(int i = 0; i < n; i+=c-1)
+        {
+            if(c%2 == 0)
             {
-                ListNode *tmp = temp->next;
-                vector<int> arr;
-                for (int i = 0; i < cnt; i++)
+                if(i+c>=n)
                 {
-                    arr.push_back(tmp->val);
-                    tmp = tmp->next;
-                }
-                temp = tmp;
-                ListNode *newHead = reverseArrayToList(arr);
-                if (reverseHead == NULL)
-                {
-                    reverseHead = newHead;
+                    if((n-i)%2==0)
+                        reverse(v.begin()+i, v.end());
                 }
                 else
                 {
-                    ListNode *temp = reverseHead;
-                    while (temp->next)
-                    {
-                        temp = temp->next;
-                    }
-                    temp->next = newHead;
+                    reverse(v.begin()+i, v.begin()+i+c);
                 }
             }
+            else if(i+c>=n && (n-i)%2==0)
+            {
+                reverse(v.begin()+i, v.end());
+            }
+            c++;
         }
-        return head;
+        ListNode *temp = new ListNode(v[0]);
+        ListNode *head1 = temp;
+        for(int i = 1; i < n; i++)
+        {
+            temp->next = new ListNode(v[i]);
+            temp = temp->next;
+        }
+        return head1;
     }
 };
 
 int main()
 {
-    // Input: head = [5,2,6,3,9,1,7,3,8,4]
+    // Input: head = [4,3,0,5,1,2,7,8,6]
     // Output: [5,6,2,3,9,1,4,8,3,7]
 
-    ListNode *head = new ListNode(5);
-    vector<int> v = {2, 6, 3, 9, 1, 7, 3, 8, 4};
+    ListNode *head = new ListNode(4);
+    vector<int> v = {3,0,5,1,2,7,8,6,3,4};
 
     for (int i = 0; i < v.size(); i++)
         head->insert(v[i]);
@@ -123,10 +105,6 @@ int main()
 
     Solution s;
     ListNode *ans = s.reverseEvenLengthGroups(head);
-    while (ans != NULL)
-    {
-        cout << ans->val << " ";
-        ans = ans->next;
-    }
+    ans->print();
     return 0;
 }
