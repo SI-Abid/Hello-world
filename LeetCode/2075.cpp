@@ -10,15 +10,21 @@ public:
         if(rows == 1) return encodedText;
         int n = encodedText.size();
         int cols = n / rows;
-        int clk = cols+1;
+        // int clk = cols+1;
+        vector<vector<char>> text2d(rows, vector<char>(cols));
+        int k = 0;
         for(int i=0;i<rows;i++)
         {
             for(int j=0;j<cols;j++)
             {
-                if(i+j*clk < n)
-                {
-                    res += encodedText[i+j*clk];
-                }
+                text2d[i][j] = encodedText[k++];
+            }
+        }
+        for(int i=0;i<cols;i++)
+        {
+            for(int j=0,k=i;j<rows && k<cols;j++,k++)
+            {
+                res += text2d[j][k];
             }
         }
         // trim tailing spaces
