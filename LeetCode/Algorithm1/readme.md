@@ -10,3 +10,9 @@
 
 1. [977. Squares of a Sorted Array](https://leetcode.com/problems/squares-of-a-sorted-array/)
 2. [189. Rotate Array](https://leetcode.com/problems/rotate-array/)
+
+### Day 3
+
+1. [283. Move Zeroes](https://leetcode.com/problems/move-zeroes/)
+2. [167. Two Sum II - Input array is sorted](https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/)
+
