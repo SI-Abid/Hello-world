@@ -25,3 +25,17 @@
 
 1. [876. Middle of the Linked List](https://leetcode.com/problems/middle-of-the-linked-list/)
 2. [19. Remove Nth Node From End of List](https://leetcode.com/problems/remove-nth-node-from-end-of-list/)
+
+### Day 6
+
+1. [3. Longest Substring Without Repeating Characters](https://leetcode.com/problems/longest-substring-without-repeating-characters/)
+2. [567. Permutation in String](https://leetcode.com/problems/permutation-in-string/)
+
+### Day 7
+
+1. [695. Max Area of Island](https://leetcode.com/problems/max-area-of-island/)
+2. [733. Flood Fill](https://leetcode.com/problems/flood-fill/)
+
+### Day 8
+
+1. [617. Merge Two Binary Trees](https://leetcode.com/problems/merge-two-binary-trees/)
