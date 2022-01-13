@@ -22,34 +22,11 @@ const int MOD = 1e9 + 7;
 const int INF = 1e9;
 const int GREEN = 1;
 const int BLUE = 2;
+int ans;
 
 vector<int> adj[100005];
 int vis[100005];
 int cnt, cnt1;
-// level of a tree
-void bfs(int s)
-{
-    queue<int> q;
-    q.push(s);
-    vis[s] = GREEN;
-
-    while (!q.empty())
-    {
-        int u = q.front();
-        q.pop();
-        for (int v : adj[u])
-        {
-            if (!vis[v])
-            {
-                if (vis[u] == GREEN)
-                    vis[v] = BLUE, cnt++;
-                else
-                    vis[v] = GREEN, cnt1++;
-                q.push(v);
-            }
-        }
-    }
-}
 
 void dfs(int u, int col)
 {
@@ -61,9 +38,15 @@ void dfs(int u, int col)
             continue;
 
         if (col == GREEN)
-            dfs(v, BLUE), cnt++;
+        {
+            cnt++;
+            dfs(v, BLUE);
+        }
         else
-            dfs(v, GREEN), cnt1++;
+        {
+            cnt1++;
+            dfs(v, GREEN);
+        }
     }
 }
 
@@ -74,6 +57,7 @@ void clear()
     memset(vis, false, sizeof vis);
     cnt = 0;
     cnt1 = 1;
+    ans=0;
 }
 
 int main(int argc, char *argv[])
@@ -105,10 +89,17 @@ int main(int argc, char *argv[])
         //bfs(1);
         for(int i:s)
             if(!vis[i])
+            {
+                // cout<<cnt<<" "<<cnt1<<endl;
                 dfs(i, GREEN);
+                ans+=max(cnt,cnt1);
+                cnt=0,cnt1=1;
+                // cnt1++;
+            }
 
-        cout << "Case " << it++ << ": ";
-        cout << max(cnt, cnt1) << endl;
+        // cout<<cnt<<" "<<cnt1<<endl;
+
+        cout << "Case " << it++ << ": "<<ans<< endl;
         // printf("%d %d\n", ans[0], ans[1]);
     }
     return 0;
