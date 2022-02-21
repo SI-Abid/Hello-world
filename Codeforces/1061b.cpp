@@ -42,55 +42,35 @@ int main(int argc, char* argv[])
     if(argc == 3) freopen(argv[2], "w", stdout);
     ios::sync_with_stdio(false);
 
-    int q;
-    cin>>q;
-    while(q--)
+    ll n,m,tot=0;
+    cin>>n>>m;
+    vll v(n);
+    rep(i,0,n)
     {
-        string s,t;
-        cin>>s>>t;
-        bool ok = false;
-        for(int i=0; i<s.size() and not ok; i++)
-        {
-            for(int j=i;j<s.size(); j++)
-            {
-                bool flag = true;
-                int k = 0;
-                for(int l=i; l<=j; l++)
-                {
-                    if(k==t.size() or s[l] != t[k])
-                    {
-                        flag = false;
-                        break;
-                    }
-                    k++;
-                }
-                // k-=2;
-                for(int l=j-1; l>=0; l--)
-                {
-                    if(k==t.size()) break;
-                    if(s[l] != t[k])
-                    {
-                        flag = false;
-                        break;
-                    }
-                    k++;
-                }
-                if(flag and k==t.size())
-                {
-                    ok = true;
-                    break;
-                }
-            }
-        }
-        if(ok)
-        {
-            cout<<"YES\n";
-        }
-        else
-        {
-            cout<<"NO\n";
-        }
+        cin>>v[i];
+        tot+=v[i];
     }
+    // sort(all(v));
+    // for(int i=1;i<n;i++)
+    // {
+    //     tot+=v[i]-v[i-1];
+    // }
+    // if(v[0]==v[n-1])
+    // {
+    //     for(int i=0;i<n;i++)
+    //     {
+    //         if(v[i]>1)
+    //         {
+    //             tot+=v[i]-1;
+    //         }
+    //     }
+    // }
+    if(n==1)
+    {
+        cout<<0<<endl;
+        return 0;
+    }
+    cout<<tot-max(n,*max_element(all(v))) <<endl;
 
     return 0;
 }

@@ -42,55 +42,57 @@ int main(int argc, char* argv[])
     if(argc == 3) freopen(argv[2], "w", stdout);
     ios::sync_with_stdio(false);
 
-    int q;
-    cin>>q;
-    while(q--)
+    int n,m,k;
+    cin>>n>>m>>k;
+    char c[n][m];
+    for(int i=0; i<n; i++)
     {
-        string s,t;
-        cin>>s>>t;
-        bool ok = false;
-        for(int i=0; i<s.size() and not ok; i++)
+        for(int j=0; j<m; j++)
         {
-            for(int j=i;j<s.size(); j++)
-            {
-                bool flag = true;
-                int k = 0;
-                for(int l=i; l<=j; l++)
-                {
-                    if(k==t.size() or s[l] != t[k])
-                    {
-                        flag = false;
-                        break;
-                    }
-                    k++;
-                }
-                // k-=2;
-                for(int l=j-1; l>=0; l--)
-                {
-                    if(k==t.size()) break;
-                    if(s[l] != t[k])
-                    {
-                        flag = false;
-                        break;
-                    }
-                    k++;
-                }
-                if(flag and k==t.size())
-                {
-                    ok = true;
-                    break;
-                }
-            }
-        }
-        if(ok)
-        {
-            cout<<"YES\n";
-        }
-        else
-        {
-            cout<<"NO\n";
+            cin>>c[i][j];
         }
     }
+    int ans=0;
+    for(int i=0; i<n; i++)
+    {
+        int cnt=0;
+        for(int j=0; j<m; j++)
+        {
+            if(c[i][j]=='.')
+            {
+                cnt++;
+                if(cnt>=k)
+                {
+                    ans++;
+                }
+            }
+            else
+            {
+                cnt=0;
+            }
+        }
+    }
+    for(int i=0; i<m; i++)
+    {
+        int cnt=0;
+        for(int j=0; j<n; j++)
+        {
+            if(c[j][i]=='.') 
+            {
+                cnt++;
+                if(cnt>=k)
+                {
+                    ans++;
+                }
+            }
+            else 
+                cnt=0;
+        }
+    }
+    if(k==1)
+        cout<<ans/2<<endl;
+    else
+        cout<<ans<<endl;
 
     return 0;
 }

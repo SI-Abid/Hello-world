@@ -36,59 +36,62 @@ const int dy[]={1,-1,0,0};
 const int fx[]={0,1,1,1,0,-1,-1,-1};
 const int fy[]={1,1,0,-1,-1,-1,0,1};
 
+struct tri
+{
+    int x, y, z;
+};
+
+bool is_sort(vi &a)
+{
+    for (int i = 1; i < a.size(); i++)
+    {
+        if (a[i] < a[i-1])
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
 int main(int argc, char* argv[])
 {
     if(argc == 2 or argc == 3) freopen(argv[1], "r", stdin);
     if(argc == 3) freopen(argv[2], "w", stdout);
     ios::sync_with_stdio(false);
 
-    int q;
-    cin>>q;
-    while(q--)
+    int t;
+    cin>>t;
+    while(t--)
     {
-        string s,t;
-        cin>>s>>t;
-        bool ok = false;
-        for(int i=0; i<s.size() and not ok; i++)
+        int n;
+        cin>>n;
+        vi v(n);
+        rep(i,0,n)
         {
-            for(int j=i;j<s.size(); j++)
-            {
-                bool flag = true;
-                int k = 0;
-                for(int l=i; l<=j; l++)
-                {
-                    if(k==t.size() or s[l] != t[k])
-                    {
-                        flag = false;
-                        break;
-                    }
-                    k++;
-                }
-                // k-=2;
-                for(int l=j-1; l>=0; l--)
-                {
-                    if(k==t.size()) break;
-                    if(s[l] != t[k])
-                    {
-                        flag = false;
-                        break;
-                    }
-                    k++;
-                }
-                if(flag and k==t.size())
-                {
-                    ok = true;
-                    break;
-                }
-            }
+            cin>>v[i];
         }
-        if(ok)
+        if(is_sort(v))
         {
-            cout<<"YES\n";
+            cout<<"0\n";
+            continue;
+        }
+        vector<tri> vt;
+        for(int i=0; i<n-2; i++)
+        {
+            vt.pb({i+1,n-1,n});
+            v[i]=v[n-2]-v[n-1];
+        }
+        if(is_sort(v))
+        {
+            cout<<vt.size()<<endl;
+            for(auto i:vt)
+            {
+                cout<<i.x<<" "<<i.y<<" "<<i.z<<endl;
+            }
         }
         else
         {
-            cout<<"NO\n";
+            cout<<"-1\n";
         }
     }
 

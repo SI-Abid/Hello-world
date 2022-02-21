@@ -42,54 +42,36 @@ int main(int argc, char* argv[])
     if(argc == 3) freopen(argv[2], "w", stdout);
     ios::sync_with_stdio(false);
 
-    int q;
-    cin>>q;
-    while(q--)
+    int t;
+    cin>>t;
+    while(t--)
     {
-        string s,t;
-        cin>>s>>t;
-        bool ok = false;
-        for(int i=0; i<s.size() and not ok; i++)
+        int n;
+        cin>>n;
+        vi a(n);
+        
+        for (int i = 0; i < n; i++)
         {
-            for(int j=i;j<s.size(); j++)
-            {
-                bool flag = true;
-                int k = 0;
-                for(int l=i; l<=j; l++)
-                {
-                    if(k==t.size() or s[l] != t[k])
-                    {
-                        flag = false;
-                        break;
-                    }
-                    k++;
-                }
-                // k-=2;
-                for(int l=j-1; l>=0; l--)
-                {
-                    if(k==t.size()) break;
-                    if(s[l] != t[k])
-                    {
-                        flag = false;
-                        break;
-                    }
-                    k++;
-                }
-                if(flag and k==t.size())
-                {
-                    ok = true;
-                    break;
-                }
-            }
+            cin>>a[i];
         }
-        if(ok)
+        int mn = *min_element(all(a));
+        int mx = *max_element(all(a));
+        int c1 = 0, c2 = 0;
+        for (int i = 0; i <= n/2; i++)
         {
-            cout<<"YES\n";
+            if(a[i] == mn) c1++;
+            if(a[i] == mx) c2++;
         }
-        else
+        int ans = min(c1, c2);
+        c1=0, c2=0;
+        for (int i = n/2; i < n; i++)
         {
-            cout<<"NO\n";
+            if(a[i] == mn) c1++;
+            if(a[i] == mx) c2++;
         }
+        ans = min(ans, min(c1, c2));
+        cout<<ans<<endl;
+        
     }
 
     return 0;

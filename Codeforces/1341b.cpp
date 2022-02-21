@@ -42,54 +42,41 @@ int main(int argc, char* argv[])
     if(argc == 3) freopen(argv[2], "w", stdout);
     ios::sync_with_stdio(false);
 
-    int q;
-    cin>>q;
-    while(q--)
+    int t;
+    cin>>t;
+    while(t--)
     {
-        string s,t;
-        cin>>s>>t;
-        bool ok = false;
-        for(int i=0; i<s.size() and not ok; i++)
+        int n,k;
+        cin>>n>>k;
+        vi v(n);
+        for (int i = 0; i < n; i++)
         {
-            for(int j=i;j<s.size(); j++)
+            cin>>v[i];
+        }
+        int p[n];
+        memset(p,0,sizeof(p));
+        for(int i=1; i<n-1; i++)
+        {
+            if(v[i]>v[i-1] and v[i]>v[i+1])
             {
-                bool flag = true;
-                int k = 0;
-                for(int l=i; l<=j; l++)
-                {
-                    if(k==t.size() or s[l] != t[k])
-                    {
-                        flag = false;
-                        break;
-                    }
-                    k++;
-                }
-                // k-=2;
-                for(int l=j-1; l>=0; l--)
-                {
-                    if(k==t.size()) break;
-                    if(s[l] != t[k])
-                    {
-                        flag = false;
-                        break;
-                    }
-                    k++;
-                }
-                if(flag and k==t.size())
-                {
-                    ok = true;
-                    break;
-                }
+                p[i]=1;
             }
         }
-        if(ok)
+        int freq[n];
+        memset(freq,0,sizeof(freq));
+        for(int i=1; i<n; i++)
         {
-            cout<<"YES\n";
+            freq[i]=freq[i-1]+p[i];
         }
-        else
+        int mi=0;
+        for(int i=0;i<n-k;i++)
         {
-            cout<<"NO\n";
+            if(freq[i+k]-freq[mi+1]<freq[i+k]-freq[i])
+            {
+                mi=i+1;
+            }
         }
+        cout<< freq[mi+k-1]-freq[mi]+1<<" "<<mi<<endl;
     }
 
     return 0;

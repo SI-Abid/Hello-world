@@ -42,54 +42,18 @@ int main(int argc, char* argv[])
     if(argc == 3) freopen(argv[2], "w", stdout);
     ios::sync_with_stdio(false);
 
-    int q;
-    cin>>q;
-    while(q--)
+    int t;
+    cin>>t;
+    while(t--)
     {
-        string s,t;
-        cin>>s>>t;
-        bool ok = false;
-        for(int i=0; i<s.size() and not ok; i++)
+        int n,q;
+        cin>>n>>q;
+        vi a(n);
+        rep(i,0,n)
         {
-            for(int j=i;j<s.size(); j++)
-            {
-                bool flag = true;
-                int k = 0;
-                for(int l=i; l<=j; l++)
-                {
-                    if(k==t.size() or s[l] != t[k])
-                    {
-                        flag = false;
-                        break;
-                    }
-                    k++;
-                }
-                // k-=2;
-                for(int l=j-1; l>=0; l--)
-                {
-                    if(k==t.size()) break;
-                    if(s[l] != t[k])
-                    {
-                        flag = false;
-                        break;
-                    }
-                    k++;
-                }
-                if(flag and k==t.size())
-                {
-                    ok = true;
-                    break;
-                }
-            }
+            cin>>a[i];
         }
-        if(ok)
-        {
-            cout<<"YES\n";
-        }
-        else
-        {
-            cout<<"NO\n";
-        }
+        
     }
 
     return 0;
