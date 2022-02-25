@@ -46,18 +46,22 @@ int main(int argc, char* argv[])
     cin>>t;
     while(t--)
     {
-        int n;
-        cin>>n;
-        vi a(n);
-        vi b(n);
-        for (int i = 0; i < n; i++)
+        vector<pll> v(3);
+        for (int i = 0; i < 3; i++)
         {
-            cin>>a[i];
-            b[i] = a[i];
+            cin>>v[i].F>>v[i].S;
         }
-        sort(all(b));
-        
-        
+        sort(all(v), [](pll a, pll b){return a.S>b.S;});
+    
+        if(v[0].S==v[1].S)
+        {
+            ll d1=abs(v[0].F-v[1].F);
+            cout<<d1<<endl;
+        }
+        else
+        {
+            cout<<0<<endl;
+        }
     }
 
     return 0;

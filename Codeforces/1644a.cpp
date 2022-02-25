@@ -46,18 +46,14 @@ int main(int argc, char* argv[])
     cin>>t;
     while(t--)
     {
-        int n;
-        cin>>n;
-        vi a(n);
-        vi b(n);
-        for (int i = 0; i < n; i++)
-        {
-            cin>>a[i];
-            b[i] = a[i];
-        }
-        sort(all(b));
-        
-        
+        bool ok = true;
+        string s;
+        cin>>s;
+        if(s.find('r')>s.find('R')) ok = false;
+        if(s.find('g')>s.find('G')) ok = false;
+        if(s.find('b')>s.find('B')) ok = false;
+        if(ok) cout<<"YES"<<endl;
+        else cout<<"NO"<<endl;
     }
 
     return 0;

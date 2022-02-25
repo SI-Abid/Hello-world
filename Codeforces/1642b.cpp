@@ -48,16 +48,26 @@ int main(int argc, char* argv[])
     {
         int n;
         cin>>n;
-        vi a(n);
-        vi b(n);
+        set<int> s;
         for (int i = 0; i < n; i++)
         {
-            cin>>a[i];
-            b[i] = a[i];
+            int x;
+            cin>>x;
+            s.insert(x);
         }
-        sort(all(b));
-        
-        
+        int ans=s.size();
+        for(int i=0;i<n;i++)
+        {
+            if(i<ans)
+            {
+                cout<<ans<<" ";
+            }
+            else
+            {
+                cout<<++ans<<" ";
+            }
+        }
+        cout<<endl;
     }
 
     return 0;

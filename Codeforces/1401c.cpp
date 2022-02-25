@@ -49,15 +49,36 @@ int main(int argc, char* argv[])
         int n;
         cin>>n;
         vi a(n);
-        vi b(n);
-        for (int i = 0; i < n; i++)
+        vi b;
+        rep(i,0,n)
         {
             cin>>a[i];
-            b[i] = a[i];
+        }
+        if(a.size()==1)
+        {
+            cout<<"YES"<<endl;
+            continue;
+        }
+        int mn = *min_element(all(a));
+        for(int i=0;i<n;i++)
+        {
+            if(__gcd(a[i],mn)==mn)
+            {
+                b.pb(a[i]);
+                a[i]=0;
+            }
         }
         sort(all(b));
-        
-        
+        int j=0;
+        for(int i=0;i<n;i++)
+        {
+            if(a[i]==0)
+            {
+                a[i]=b[j++];
+            }
+        }
+        if(is_sorted(all(a))) cout<<"YES"<<endl;
+        else cout<<"NO"<<endl;
     }
 
     return 0;

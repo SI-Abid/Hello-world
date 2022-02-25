@@ -46,17 +46,22 @@ int main(int argc, char* argv[])
     cin>>t;
     while(t--)
     {
-        int n;
-        cin>>n;
-        vi a(n);
-        vi b(n);
+        int n,x;
+        cin>>n>>x;
+        vi v(n);
+        int neg=0;
+        int sum=0;
         for (int i = 0; i < n; i++)
         {
-            cin>>a[i];
-            b[i] = a[i];
+            cin>>v[i];
+            sum+=v[i];
+            if(v[i]<0) neg++;
         }
-        sort(all(b));
-        
+        if(neg==0)
+        {
+            rep(i,0,n+1) cout<<sum<<" ";
+            sum+=x;
+        }
         
     }
 

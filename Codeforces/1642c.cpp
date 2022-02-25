@@ -46,18 +46,27 @@ int main(int argc, char* argv[])
     cin>>t;
     while(t--)
     {
-        int n;
-        cin>>n;
-        vi a(n);
-        vi b(n);
-        for (int i = 0; i < n; i++)
+        ll n,x;
+        cin>>n>>x;
+        vll v(n);
+        rep(i,0,n) cin>>v[i];
+        sort(all(v));
+        int safurokz=0;
+        for(int i=0;i<n;i++)
         {
-            cin>>a[i];
-            b[i] = a[i];
+            if(v[i]==0) continue;
+            auto it=lower_bound(all(v),x*v[i]);
+            if(v[it-v.be]==x*v[i])
+            {
+                v[i]=0;
+                v[it-v.be]=0;
+            }
+            else
+            {
+                safurokz++;
+            }
         }
-        sort(all(b));
-        
-        
+        cout<<safurokz<<endl;
     }
 
     return 0;
