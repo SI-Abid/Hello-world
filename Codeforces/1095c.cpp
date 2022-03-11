@@ -44,12 +44,13 @@ int main(int argc, char* argv[])
 
     int n,k;
     cin>>n>>k;
+    int m=n;
     vi v;
     while(n>0)
     {
         for(int i=30; i>=0; i--)
         {
-            if(n>1<<i)
+            if(n>=1<<i)
             {
                 v.pb(1<<i);
                 n-=1<<i;
@@ -57,11 +58,42 @@ int main(int argc, char* argv[])
             }
         }
     }
-    if(k>v.size())
+    if(k<v.size() or k>m)
     {
         cout<<"NO"<<endl;
         return 0;
     }
-    
+    cout<<"YES"<<endl;
+    if(k==v.size())
+    {
+        for(int i=0; i<v.size(); i++)
+        {
+            cout<<v[i]<<" ";
+        }
+        cout<<endl;
+        return 0;
+    }
+    vi ans;
+    int i=0;
+    while(ans.size()<k)
+    {
+        int x=v[i];
+        if(x>1)
+        {
+            ans.pb(x/2);
+            ans.pb(x/2);
+            v[i]=x/2;
+        }
+        else
+        {
+            ans.pb(x);
+        }
+        i=(i+1)%v.size();
+    }
+    for(int i=0; i<ans.size(); i++)
+    {
+        cout<<ans[i]<<" ";
+    }
+    cout<<endl;
     return 0;
 }
