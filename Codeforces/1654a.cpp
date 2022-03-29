@@ -47,29 +47,25 @@ int main(int argc, char* argv[])
     cin>>t;
     while(t--)
     {
-        int height, width;
-        cin>>height>>width;
-        vector<string> grid(height);
-        for(int i=0; i<height; i++)
+        int n;
+        cin>>n;
+        vi a(n);
+        rep(i,0,n) cin>>a[i];
+        // largest two elements
+        ll mx1 = -1, mx2 = -1;
+        rep(i,0,n)
         {
-            cin>>grid[i];
-        }
-        bool ok = true;
-        for (size_t i = 0; i < height-1 and ok; i++)
-        {
-            for (size_t j = 0; j < width-1; j++)
+            if(a[i] > mx1)
             {
-                string s=grid[i].substr(j, 2)+grid[i+1].substr(j, 2);
-                sort(s.begin(), s.end());
-                if(s=="0111")
-                {
-                    ok=false;
-                    break;
-                }
+                mx2 = mx1;
+                mx1 = a[i];
             }
-            
+            else if(a[i] > mx2)
+            {
+                mx2 = a[i];
+            }
         }
-        cout<<(ok?"YES\n":"NO\n");
+        cout<<mx1+mx2<<endl;
     }
 
     return 0;

@@ -30,7 +30,7 @@ typedef set<int> si;
 typedef pair<int, int> pii;
 typedef pair<ll, ll> pll;
 
-const int MOD = 1e9 + 7;
+const int MOD = 998244353;
 const int INF = 1e9;
 const int dx[]={0,0,1,-1};
 const int dy[]={1,-1,0,0};
@@ -45,31 +45,23 @@ int main(int argc, char* argv[])
 
     int t;
     cin>>t;
+    ll f[1000];
+    f[0]=1;
+    for(int i=1;i<1000;i++)
+    {
+        f[i]=(f[i-1]*i)%MOD;
+    }
     while(t--)
     {
-        int height, width;
-        cin>>height>>width;
-        vector<string> grid(height);
-        for(int i=0; i<height; i++)
+        int n;
+        cin>>n;
+        if(n&1)
         {
-            cin>>grid[i];
+            cout<<"0\n";
+            continue;
         }
-        bool ok = true;
-        for (size_t i = 0; i < height-1 and ok; i++)
-        {
-            for (size_t j = 0; j < width-1; j++)
-            {
-                string s=grid[i].substr(j, 2)+grid[i+1].substr(j, 2);
-                sort(s.begin(), s.end());
-                if(s=="0111")
-                {
-                    ok=false;
-                    break;
-                }
-            }
-            
-        }
-        cout<<(ok?"YES\n":"NO\n");
+        ll ans=(f[n/2]*f[n/2])%MOD;
+        cout<<ans<<"\n";
     }
 
     return 0;

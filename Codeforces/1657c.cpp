@@ -47,29 +47,44 @@ int main(int argc, char* argv[])
     cin>>t;
     while(t--)
     {
-        int height, width;
-        cin>>height>>width;
-        vector<string> grid(height);
-        for(int i=0; i<height; i++)
+        int n;
+        cin>>n;
+        deque<char> s;
+        for (size_t i = 0; i < n; i++)
         {
-            cin>>grid[i];
+            char c;cin>>c;
+            s.push_back(c);
         }
-        bool ok = true;
-        for (size_t i = 0; i < height-1 and ok; i++)
+        int ans=0;
+        while(s.size()>1)
         {
-            for (size_t j = 0; j < width-1; j++)
+            if(s.front()=='(')
             {
-                string s=grid[i].substr(j, 2)+grid[i+1].substr(j, 2);
-                sort(s.begin(), s.end());
-                if(s=="0111")
+                s.pop_front();
+                s.pop_front();
+                ans++;
+                continue;
+            }
+            int r=-1;
+            for(size_t i=1;i<s.size();i++)
+            {
+                if(s[i]==')')
                 {
-                    ok=false;
+                    r=i;
                     break;
                 }
             }
-            
+            if(r==-1)
+            {
+                break;
+            }
+            ans++;
+            for(int i=0;i<=r;i++)
+            {
+                s.pop_front();
+            }
         }
-        cout<<(ok?"YES\n":"NO\n");
+        cout<<ans<<" "<<s.size()<<endl;
     }
 
     return 0;

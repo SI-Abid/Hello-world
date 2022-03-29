@@ -43,34 +43,30 @@ int main(int argc, char* argv[])
     if(argc == 3) freopen(argv[2], "w", stdout);
     ios::sync_with_stdio(false);
 
+
     int t;
     cin>>t;
     while(t--)
     {
-        int height, width;
-        cin>>height>>width;
-        vector<string> grid(height);
-        for(int i=0; i<height; i++)
+        int x,y;
+        cin>>x>>y;
+        if (x==0 and y==0)
         {
-            cin>>grid[i];
+            cout<<"0"<<endl;
+            continue;
         }
-        bool ok = true;
-        for (size_t i = 0; i < height-1 and ok; i++)
+        int d=sqrt(x*x+y*y);
+        if(d*d==x*x+y*y)
         {
-            for (size_t j = 0; j < width-1; j++)
-            {
-                string s=grid[i].substr(j, 2)+grid[i+1].substr(j, 2);
-                sort(s.begin(), s.end());
-                if(s=="0111")
-                {
-                    ok=false;
-                    break;
-                }
-            }
-            
+            cout<<"1"<<endl;
         }
-        cout<<(ok?"YES\n":"NO\n");
+        else
+        {
+            cout<<"2"<<endl;
+        }
     }
 
     return 0;
+
+
 }

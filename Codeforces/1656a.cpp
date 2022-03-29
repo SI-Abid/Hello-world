@@ -47,29 +47,14 @@ int main(int argc, char* argv[])
     cin>>t;
     while(t--)
     {
-        int height, width;
-        cin>>height>>width;
-        vector<string> grid(height);
-        for(int i=0; i<height; i++)
-        {
-            cin>>grid[i];
-        }
-        bool ok = true;
-        for (size_t i = 0; i < height-1 and ok; i++)
-        {
-            for (size_t j = 0; j < width-1; j++)
-            {
-                string s=grid[i].substr(j, 2)+grid[i+1].substr(j, 2);
-                sort(s.begin(), s.end());
-                if(s=="0111")
-                {
-                    ok=false;
-                    break;
-                }
-            }
-            
-        }
-        cout<<(ok?"YES\n":"NO\n");
+        int n;
+        cin>>n;
+        vi v(n);
+        rep(i,0,n) cin>>v[i];
+        // index of min and max element
+        int mn=min_element(all(v))-v.be+1;
+        int mx=max_element(all(v))-v.be+1;
+        cout<<mn<<" "<<mx<<endl;
     }
 
     return 0;
