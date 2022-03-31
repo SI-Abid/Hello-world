@@ -1,7 +1,5 @@
 *.b
 .vscode
-in.txt
-out.txt
 *.exe
-*.in
-*.out
+**/in
+**/out
