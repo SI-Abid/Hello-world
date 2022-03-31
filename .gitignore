@@ -3,3 +3,5 @@
 in.txt
 out.txt
 *.exe
+*.in
+*.out
