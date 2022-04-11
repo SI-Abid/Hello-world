@@ -43,32 +43,28 @@ int main(int argc, char* argv[])
     if(argc == 3) freopen(argv[2], "w", stdout);
     ios::sync_with_stdio(false);
 
-    int t;
-    cin>>t;
-    while(t--)
+    // cout<<bitset<16>(32768).to_string()<<endl;
+    // cout<<(1<<15)<<endl;
+    int n;
+    cin>>n;
+    while(n--)
     {
-        int n,k;
-        cin>>n>>k;
-        vi v(n);
-        map<int,bool> m;
-        rep(i,0,n)
-        { 
-            cin>>v[i];
-            m[v[i]]=true;
-        }
-        // sort(all(v));
-        // for(int i=0;i<)
-        bool ok=false;
-        for (size_t i = 0; i < n; i++)
+        int s;
+        cin>>s;
+        int ans=17;
+        for (int i = 0; i < 15; i++)
         {
-            if(m[v[i]+k])
+            for (int j = 0; j < 15; j++)
             {
-                ok=true;
-                break;
+                if(((s+i)<<j)%32768==0)
+                {
+                    ans=min(ans,i+j);
+                }
             }
         }
-        cout<<(ok?"YES":"NO")<<"\n";        
+        cout<<ans<<" ";
     }
+    cout<<"\n";
 
     return 0;
 }

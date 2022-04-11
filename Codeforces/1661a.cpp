@@ -47,27 +47,36 @@ int main(int argc, char* argv[])
     cin>>t;
     while(t--)
     {
-        int n,k;
-        cin>>n>>k;
-        vi v(n);
-        map<int,bool> m;
-        rep(i,0,n)
-        { 
-            cin>>v[i];
-            m[v[i]]=true;
-        }
-        // sort(all(v));
-        // for(int i=0;i<)
-        bool ok=false;
-        for (size_t i = 0; i < n; i++)
+        int n;
+        cin>>n;
+        vector<int> a(n);
+        vector<int> b(n);
+        for(int i=0;i<n;i++)
         {
-            if(m[v[i]+k])
+            cin>>a[i];
+        }
+        for(int i=0;i<n;i++)
+        {
+            cin>>b[i];
+        }
+        
+        long long ans=0;
+        for(int i=1;i<n;i++)
+        {
+            if(abs(a[i]-a[i-1])+abs(b[i]-b[i-1])>abs(b[i]-a[i-1])+abs(a[i]-b[i-1]))
             {
-                ok=true;
-                break;
+                swap(a[i],b[i]);
             }
         }
-        cout<<(ok?"YES":"NO")<<"\n";        
+        for(int i=0;i<n-1;i++)
+        {
+            ans+=abs(a[i]-a[i+1]);
+        }
+        for(int i=0;i<n-1;i++)
+        {
+            ans+=abs(b[i]-b[i+1]);
+        }
+        cout<<ans<<endl;
     }
 
     return 0;

@@ -47,27 +47,30 @@ int main(int argc, char* argv[])
     cin>>t;
     while(t--)
     {
-        int n,k;
-        cin>>n>>k;
-        vi v(n);
-        map<int,bool> m;
-        rep(i,0,n)
-        { 
-            cin>>v[i];
-            m[v[i]]=true;
-        }
-        // sort(all(v));
-        // for(int i=0;i<)
-        bool ok=false;
+        int n;
+        cin>>n;
+        vector<string> vs(n);
+        int ones=0;
         for (size_t i = 0; i < n; i++)
         {
-            if(m[v[i]+k])
-            {
-                ok=true;
-                break;
-            }
+            string s;
+            cin>>s;
+            // ones+=bitset<2000>(s).count();
+            vs[i]=s;
+            ones+=count(s.begin(),s.end(),'1');
         }
-        cout<<(ok?"YES":"NO")<<"\n";        
+        int diag=0,tmp;
+        for (size_t i = 0; i < n; i++)
+        {
+            tmp=0;
+            for (size_t j = 0; j < n; j++)
+            {
+                if(vs[j][(i+j)%n]=='1')
+                    tmp++;
+            }
+            diag=max(tmp,diag);
+        }
+        cout<< (n-diag) +(ones-diag)<<endl;
     }
 
     return 0;

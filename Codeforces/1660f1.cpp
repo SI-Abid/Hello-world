@@ -47,27 +47,25 @@ int main(int argc, char* argv[])
     cin>>t;
     while(t--)
     {
-        int n,k;
-        cin>>n>>k;
-        vi v(n);
-        map<int,bool> m;
-        rep(i,0,n)
-        { 
-            cin>>v[i];
-            m[v[i]]=true;
-        }
-        // sort(all(v));
-        // for(int i=0;i<)
-        bool ok=false;
-        for (size_t i = 0; i < n; i++)
+        int n;
+        cin>>n;
+        string s;
+        cin>>s;
+        vi pre(n+1,0);
+        int ans=0;
+        for (size_t i = 1; i <= n; i++)
         {
-            if(m[v[i]+k])
+            pre[i]+=pre[i-1]+(s[i-1]=='-'?1:-1);
+            for (size_t j = 0; j < i; j++)
             {
-                ok=true;
-                break;
+                if(pre[i]>=pre[j] and (pre[i]-pre[j])%3==0)
+                {
+                    ans++;
+                    // cout<<i<<" "<<j<<"\n";
+                }
             }
         }
-        cout<<(ok?"YES":"NO")<<"\n";        
+        cout<<ans<<"\n";
     }
 
     return 0;
