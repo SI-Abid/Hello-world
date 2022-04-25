@@ -1,0 +1,17 @@
+{
+    "greets": [
+        "hello",
+        "hi",
+        "hey"
+    ],
+    "logins": {
+        "username": "admin",
+        "password": "admin"
+    },
+    "users": [
+        {
+            "name": "admin",
+            "age": 18
+        }
+    ]
+}
