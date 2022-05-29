@@ -3,25 +3,27 @@ using namespace std;
 
 int main()
 {
-    int t;cin>>t;
+    int t;
+    cin>>t;
     while(t--)
     {
         int n;
         cin>>n;
-        vector<int> v(n);
+        vector<int> a(n);
         for(int i=0;i<n;i++)
         {
-            cin>>v[i];
+            cin>>a[i];
         }
-        int ans=(1<<30)-1;
-        for (int i = 0; i < n; i++)
+        int cnt=0;
+        for (int i = 0; i < n-1; i++)
         {
-            if(v[i]!=i)
+            if(a[i]>a[i+1])
             {
-                ans&=v[i];
+                cnt++;
+                i++;
             }
         }
-        cout<<ans<<"\n";
+        cout<< cnt << "\n";
     }
     return 0;
 }
