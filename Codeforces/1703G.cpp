@@ -13,35 +13,40 @@ int main()
         cin>>n>>k;
         vector<ll> a(n);
         int cnt=0;
-        ll ans=0;
+        ll ans=0, sum=0;
         for(int i=0;i<n;i++)
         {
             cin>>a[i];
-            if(a[i]>k)
-                cnt++;
         }
-        int factor=1;
+        int factor=2;
         for(int i=0;i<n;i++)
         {
-            a[i]/=factor;
-            if(a[i]>k)
-            {
-                ans+= a[i]-k;
-                cnt--;
-            }
-            else
-            {
-                if(cnt>0)
-                {
-                    ans+= a[i]-k;
-                }
-                else
-                {
-                    factor*=2;
-                    ans+= a[i]/factor;
-                }
-            }
+            sum+=a[i]/factor;
+            factor*=2;
+            cnt++;
+            if(cnt==30)
+                break;
         }
+
+        ans=max(ans,sum);
+        sum=0;
+        for(int i=0;i<n;i++)
+        {
+            sum+=a[i]-k;
+            int half=0;
+            cnt=0;
+            factor=2;
+            for(int j=i+1;j<n;j++)
+            {
+                half+=a[j]/factor;
+                factor*=2;
+                cnt++;
+                if(cnt==30)
+                    break;
+            }
+            ans=max(ans,sum+half);
+        }
+
         cout<<ans<<'\n';
     }
     return 0;
