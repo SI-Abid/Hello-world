@@ -5,15 +5,12 @@ int main()
 {
     int n,m;
     cin>>n>>m;
-    if(m>n)
+    int ans = 0;
+    for(int i=1;i<=n;i++)
     {
-        cout<<"-1\n";
-        return 0;
+        if((m%i)==0 and (m/i)<=n)
+            ans++;
     }
-    int ans = n/2;
-    ans += n%2;
-    while(ans%m!=0)
-        ans++;
     cout<<ans<<"\n";
     return 0;
 }
