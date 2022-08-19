@@ -1,0 +1,5 @@
+trash=input()
+A=map(int,input().split())
+trash=input()
+B=map(int,input().split())
+print(max(A),max(B))
