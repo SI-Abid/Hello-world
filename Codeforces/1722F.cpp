@@ -1,64 +1,62 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
-int dx[] = {-1, -1, -1, 0, 0, 1, 1, 1};
-int dy[] = {-1, 0, 1, -1, 1, -1, 0, 1};
+int dx[] = {0, 0, 1, -1, 1, 1, -1, -1};
+int dy[] = {1, -1, 0, 0, 1, -1, 1, -1};
+
+void dfs(vector<vector<char>> &g, vector<vector<bool>> &vis, int x, int y, int &cnt)
+{
+    vis[x][y] = true;
+    cnt++;
+    for (int i = 0; i < 8; i++)
+    {
+        int nx = x + dx[i];
+        int ny = y + dy[i];
+        if (nx >= 0 and nx < g.size() and ny >= 0 and ny < g[0].size() and !vis[nx][ny])
+        {
+            vis[nx][ny] = true;
+            if (g[nx][ny] == '*')
+                dfs(g, vis, nx, ny, cnt);
+        }
+    }
+}
 
 int main()
 {
     int t;
-    cin>>t;
-    for(int tc=1;tc<=t;tc++)
+    cin >> t;
+    for (int tc = 1; tc <= t; tc++)
     {
-        // printf("Case %d: ",tc);
-    
-        int n,m;
-        cin>>n>>m;
+        int n, m;
+        cin >> n >> m;
         bool shaped = true;
-        vector<vector<char>>v(n,vector<char>(m));
-        int stars = 0;
+        vector<vector<char>> v(n, vector<char>(m));
+        vector<vector<bool>> vis(n, vector<bool>(m, false));
         for (int i = 0; i < n; i++)
         {
             for (int j = 0; j < m; j++)
             {
-                cin>>v[i][j];
-                if(v[i][j]=='*')
-                    stars++;
+                cin >> v[i][j];
             }
         }
-        // cout<<v<<endl;
-        for (int i = 0; i < n; i++)
+        for (int i = 0; i < n and shaped; i++)
         {
-            for (int j = 0; j < m; j++)
+            for (int j = 0; j < m and shaped; j++)
             {
-                if(v[i][j]=='*')
+                if (v[i][j] == '*' and !vis[i][j])
                 {
-                    int cnt=0;
-                    for (int k = 0; k < 8; k++)
-                    {
-                        int x = i+dx[k];
-                        int y = j+dy[k];
-                        if(x>=0 and x<n and y>=0 and y<m)
-                        {
-                            if(v[x][y]=='*')
-                                cnt++;
-                        }
-                    }
-                    if(cnt!=2)
-                    {
+                    int cnt = 0;
+                    dfs(v, vis, i, j, cnt);
+                    cout<<cnt<<' ';
+                    if (cnt != 3)
                         shaped = false;
-                        break;
-                    }
                 }
             }
-            if(!shaped)
-                break;
         }
-        if(stars==0 or shaped)
-            cout<<"YES"<<endl;
+        if (shaped)
+            cout << "YES" << endl;
         else
-            cout<<"NO"<<endl;
-    
+            cout << "NO" << endl;
     }
     return 0;
 }
