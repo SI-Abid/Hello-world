@@ -46,11 +46,11 @@ int main()
         string t;
         if(v[i].size()<s.size())
         {
-            t = v[i]+"#"+s.substr(s.size()-v[i].size(),v[i].size());
+            t = v[i]+"আবিদ"+s.substr(s.size()-v[i].size(),v[i].size());
         }
         else
         {
-            t = v[i].substr(0,s.size())+"#"+s;
+            t = v[i].substr(0,s.size())+"আবিদ"+s;
         }
         int ans = lps(t);
         // cout<<t<<' '<< ans<< endl;
