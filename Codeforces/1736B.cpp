@@ -1,37 +1,49 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 typedef long long ll;
+
+ll lcm(ll a, ll b)
+{
+    return a * b / __gcd(a, b);
+}
+
 signed main()
 {
     int t;
-    cin>>t;
-    for(int tc=1;tc<=t;tc++)
+    cin >> t;
+    for (int tc = 1; tc <= t; tc++)
     {
         // printf("Case %d: ",tc);
-    
+
         int n;
-        cin>>n;
-        vector<int> a(n);
-        int min=-1;
-        bool flag=true;
-        for(int i=0;i<n;i++)
+        cin >> n;
+        vector<int> a(n + 2, 1);
+
+        bool flag = true;
+        for (int i = 1; i <= n; i++)
         {
-            cin>>a[i];
-            if(i!=0)
+            cin >> a[i];
+        }
+        vector<ll> b(n + 2, 1);
+        for (int i = 1; i <= n + 1; i++)
+        {
+            b[i] = lcm(a[i], a[i - 1]);
+        }
+        for (int i = 1; i <= n; i++)
+        {
+            if (a[i] != __gcd(b[i], b[i + 1]))
             {
-                if(a[i]>a[i-1] and a[i]%a[i-1]==0)
-                {
-                    flag=false;
-                }
+                flag = false;
+                break;
             }
         }
-        if(flag==false)
+        if (flag)
         {
-            cout<<"NO\n";
+            cout << "YES\n";
         }
         else
         {
-            cout<<"YES\n";
+            cout << "NO\n";
         }
         // ll prev=a[0];
         // cout<<prev<<" ";

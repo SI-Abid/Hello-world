@@ -23,8 +23,6 @@ signed main()
     cin>>_;
     for(int tc=1;tc<=_;tc++)
     {
-        // printf("Case %d: ",tc);
-    
         ll a,b,c,d;
         cin>>a>>b>>c>>d;
         ll x=-1,y=-1;

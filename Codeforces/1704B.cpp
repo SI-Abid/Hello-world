@@ -29,20 +29,17 @@ int main()
         // sort(a.begin(),a.end());
         // cout<<a<<endl<<x<<" ";
         int cnt=0;
-        for(int i=0;i<n;i++)
+        int mn=a[0];
+        int mx=a[0];
+        for(int j=0;j<n;j++)
         {
-            int mn=a[i];
-            int mx=a[i];
-            for(int j=i+1;j<n;j++)
+            mn=min(mn,a[j]);
+            mx=max(mx,a[j]);
+            if(mx-mn>x+x)
             {
-                mn=min(mn,a[j]);
-                mx=max(mx,a[j]);
-                if(mx-mn>x+x)
-                {
-                    cnt++;
-                    i=j-1;
-                    break;
-                }
+                cnt++;
+                mn=a[j];
+                mx=a[j];
             }
         }
         cout<<cnt<<"\n";
