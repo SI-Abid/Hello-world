@@ -3,48 +3,38 @@ using namespace std;
 typedef long long ll;
 int main()
 {
-    int t;
-    cin>>t;
-    for(int tc=1;tc<=t;tc++)
+    int _;
+    cin>>_;
+    for(int tc=1;tc<=_;tc++)
     {
         // printf("Case %d: ",tc);
     
         int n; cin>>n;
-        vector<int> x(n),tt(n);
-        ll allx=0,allt=0;
+        vector<int> x(n),t(n);
         for(int i=0;i<n;i++)
         {
             cin>>x[i];
-            allx+=x[i];
         }
         for(int i=0;i<n;i++)
         {
-            cin>>tt[i];
-            allt+=tt[i];
+            cin>>t[i];
         }
-        // auto [low,high]=minmax_element(x.begin(),x.end());
-        // ternary search for finding the answer
-        double l=0,r=1e9;
-        while(r-l>1e-6)
+        int mn,mx;
+        mn=INT_MAX;
+        mx=INT_MIN;
+        for(int i=0;i<n;i++)
         {
-            double m1=l+((r-l)/3.0);
-            double m2=r-((r-l)/3.0);
-            double f1=0,f2=0;
-            for(int i=0;i<n;i++)
-            {
-                f1+=abs(x[i]-m1)+tt[i];
-                f2+=abs(x[i]-m2)+tt[i];
-            }
-            if(f1<f2)
-            {
-                r=m2;
-            }
-            else
-            {
-                l=m1;
-            }
+            mn=min(mn,x[i]-t[i]);
+            mx=max(mx,x[i]+t[i]);
         }
-        cout<<fixed<<setprecision(6)<<l<<endl;
+        int ans=mn+mx;
+        cout<<ans/2;
+        if(ans&1)
+        {
+            cout<<".5";
+        }
+        cout<<"\n";
+    
     }
     return 0;
 }
