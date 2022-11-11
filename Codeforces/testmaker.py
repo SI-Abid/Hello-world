@@ -1,2 +1,3 @@
-with open('in', 'w') as f:
-    f.write(' '.join([str(i) for i in range(1,200000)]))
+"""generate test cases for codeforces"""
+with open('in', 'w', encoding='utf-8') as f:
+    f.write('100000 '*22000)
