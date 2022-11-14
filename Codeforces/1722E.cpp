@@ -1,6 +1,6 @@
 #include<bits/stdc++.h>
 using namespace std;
-
+typedef long long ll;
 template<typename T, typename U>
 ostream& operator<<(ostream& os, const pair<T, U>& p) {
     os << "(" << p.first << ", " << p.second << ")";
@@ -27,57 +27,50 @@ int main()
     
         int n,q;
         cin>>n>>q;
-        vector<pair<int,int>>v(n);
-        for (int i = 0; i < n; i++)
+        vector<vector<int>> x(1002);
+        set<int> s;
+        for(int i=0;i<n;i++)
         {
-            cin>>v[i].first>>v[i].second;
+            int h,w;
+            cin>>h>>w;
+            x[h].push_back(w);
+            s.insert(h);
         }
-        sort(v.begin(),v.end(),[](const pair<int,int>&a,const pair<int,int>&b){
-            if(a.first==b.first)
-                return a.second<b.second;
-            return a.first<b.first;
-        });
-        // cout<<v<<endl;
-        vector<long long> areas;
-        areas.push_back(0);
-        for (int i = 0; i < n; i++)
+        vector<vector<ll>> pre(1002);
+        for(auto i:s)
         {
-            areas.push_back(areas.back()+(v[i].first*v[i].second));
-        }
-        // cout<<areas<<endl;
-        while (q--)
-        {
-            pair<int,int> s, b;
-            cin>>s.first>>s.second>>b.first>>b.second;
-            
-            // binary search for pair greater than s
-            int l = 0, r = n;
-            while (l < r)
+            pre[i].clear();
+            sort(x[i].begin(),x[i].end());
+            pre[i].push_back(0);
+            for(auto j:x[i])
             {
-                int mid = (l+r)/2;
-                if (v[mid].first > s.first and v[mid].second > s.second)
-                    r = mid;
+                if(pre[i].size()==0)
+                {
+                    pre[i].push_back(j);
+                }
                 else
-                    l = mid+1;
+                {
+                    pre[i].push_back(pre[i].back()+j);
+                }
             }
-            int lower = l;
-            // binary search for pair less than b
-            l = 0, r = n;
-            while (l < r)
-            {
-                int mid = (l+r)/2;
-                if (v[mid].first < b.first and v[mid].second < b.second)
-                    l = mid+1;
-                else
-                    r = mid;
-            }
-            int upper = l;
-            // lower++;
-            // cout<<lower<<' '<<upper<<'\n';
-            long long ans=areas[upper]-areas[lower];
-            cout<<ans<<'\n';
         }
-    
+        while(q--)
+        {
+            int hs,ws,he,we;
+            cin>>hs>>ws>>he>>we;
+            ll ans = 0;
+            for (size_t i = hs+1; i < he; i++)
+            {
+                if(x[i].size()==0)
+                {
+                    continue;
+                }
+                int it = upper_bound(x[i].begin(),x[i].end(),ws)-x[i].begin();
+                int ik = upper_bound(x[i].begin(),x[i].end(),we-1)-x[i].begin();
+                ans+=(pre[i][ik]-pre[i][it])*i;
+            }
+            cout<<ans<<endl;
+        }
     }
     return 0;
 }
