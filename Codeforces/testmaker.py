@@ -1,3 +1,3 @@
-"""generate test cases for codeforces"""
-with open('in', 'w', encoding='utf-8') as f:
-    f.write('100000 '*22000)
+with open("test.txt", "w") as f:
+    for i in range(1, 2001):
+        f.write(str(i*2) + " ")
