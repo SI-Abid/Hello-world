@@ -10,22 +10,16 @@ int rec(int prev, vector<int>::iterator it, vector<int>::iterator beg, vector<in
         return memo[prev][it - beg];
 
     if (*it == 0 or *it == prev)
-    {
-        memo[prev][it - beg] = rec(0, it + 1, beg, end);
-        return memo[prev][it - beg];
-    }
+        return memo[prev][it - beg] = rec(0, it + 1, beg, end);
+
     if (*it == 3)
     {
         if (prev == 0)
-        {
-            memo[prev][it - beg] = max(rec(1, it + 1, beg, end), rec(2, it + 1, beg, end)) + 1;
-            return memo[prev][it - beg];
-        }
-        memo[prev][it - beg] = max(rec(3 ^ prev, it + 1, beg, end) + 1, rec(0, it + 1, beg, end));
-        return memo[prev][it - beg];
+            return memo[prev][it - beg] = max(rec(1, it + 1, beg, end), rec(2, it + 1, beg, end)) + 1;
+        return memo[prev][it - beg] = max(rec(3 ^ prev, it + 1, beg, end) + 1, rec(0, it + 1, beg, end));
     }
-    memo[prev][it - beg] = max(rec(*it, it + 1, beg, end) + 1, rec(0, it + 1, beg, end));
-    return memo[prev][it - beg];
+
+    return memo[prev][it - beg] = max(rec(*it, it + 1, beg, end) + 1, rec(0, it + 1, beg, end));
 }
 
 signed main()
