@@ -10,8 +10,6 @@ int rec(int prev, vector<int>::iterator it, vector<int>::iterator beg, vector<in
         return memo[prev][it - beg];
 
     if (*it == 0 or *it == prev)
-    // return rec(0, it + 1, end);
-    // ans = rec(0, it + 1, beg, end);
     {
         memo[prev][it - beg] = rec(0, it + 1, beg, end);
         return memo[prev][it - beg];
