@@ -13,7 +13,7 @@ ll rec(int i, int j, vector<vector<ll>> &a)
         return memo[i][j];
 
     ll option1, option2, option3;
-    option1 = a[i][j] + rec(i ^ 1, j + 1, a);
+    option1 = a[i][j] + rec(i xor 1, j + 1, a);
     option2 = a[i][j] + rec(0, j + 2, a);
     option3 = a[i][j] + rec(1, j + 2, a);
     return memo[i][j] = max({option1, option2, option3});

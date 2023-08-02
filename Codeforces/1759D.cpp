@@ -26,33 +26,29 @@ signed main()
             cnt5++;
             n /= 5;
         }
-        while (cnt2 > cnt5)
+        while (cnt2 < cnt5 and 2 * ans <= m)
         {
-            if (ans * 5LL > m)
-                break;
-            ans *= 5;
-            cnt2--;
-        }
-        while (cnt5 > cnt2)
-        {
-            if (ans * 2LL > m)
-                break;
             ans *= 2;
-            cnt5--;
+            cnt2++;
         }
-        while (1)
+        while (cnt5 < cnt2 and 5 * ans <= m)
         {
-            if (ans * 10LL > m)
-                break;
+            ans *= 5;
+            cnt5++;
+        }
+        while (ans * 10 <= m)
+        {
             ans *= 10;
         }
-        ans *= (m / ans);
-        ll ANS = ans * N;
-        if (ANS % 10 != 0)
+        if (ans == 1)
         {
-            ANS = n * m;
+            cout << (N * m) << '\n';
         }
-        cout << ANS << " " << endl;
+        else
+        {
+            ans *= (m / ans);
+            cout << (N * ans) << '\n';
+        }
     }
     return 0;
 }
