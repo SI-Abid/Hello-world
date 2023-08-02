@@ -12,7 +12,6 @@ ll rec(int i, int j, vector<vector<ll>> &a)
     if (memo[i][j] != -1)
         return memo[i][j];
 
-    ll ans = 0;
     ll option1, option2, option3;
     option1 = a[i][j] + rec(i ^ 1, j + 1, a);
     option2 = a[i][j] + rec(0, j + 2, a);
