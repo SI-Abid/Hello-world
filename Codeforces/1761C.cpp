@@ -1,76 +1,43 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
+#define nl "\n"
+#define ll long long
 
-// topology sort
-void dfs(int u, vector<vector<int>> &adj, vector<bool> &vis, vector<int> &ans)
+void solve()
 {
-    vis[u] = true;
-    for (int v : adj[u])
+    int n;
+    cin >> n;
+    vector<set<int>> v(n);
+    for (int i = 0; i < n; i++)
     {
-        if (!vis[v])
+        string s;
+        cin >> s;
+        v[i].insert(i + 1);
+        for (int j = 0; j < n; j++)
         {
-            dfs(v, adj, vis, ans);
+            if (s[j] == '1')
+            {
+                v[j].insert(i + 1);
+            }
         }
     }
-    ans.push_back(u);
+    for (auto s : v)
+    {
+        cout << s.size();
+        for (auto x : s)
+            cout << ' ' << x;
+        cout << nl;
+    }
 }
 
 signed main()
 {
-    int _;
-    cin>>_;
-    for(int tc=1;tc<=_;tc++)
+    int _(1);
+    cin >> _;
+    for (int tc = 1; tc <= _; tc++)
     {
         // printf("Case %d: ",tc);
-    
-        int n;
-        cin>>n;
-        vector<vector<int>> adj(n+1);
-        for (int i = 1; i <= n; i++)
-        {
-            for (int j = 1; j <= n; j++)
-            {
-                char c;
-                cin>>c;
-                if(c=='1')
-                {
-                    adj[i].push_back(j);
-                }
-            }
-        }
-        vector<bool> vis(n+1, false);
-        vector<int> ans;
-        for (int i = 1; i <= n; i++)
-        {
-            if (!vis[i])
-            {
-                dfs(i, adj, vis, ans);
-            }
-        }
-        reverse(ans.begin(), ans.end());
-        // for (int i = 0; i < n; i++)
-        // {
-        //     cout<<ans[i]<<" ";
-        // }
-        // cout<<'\n';
-        vector<vector<int>> ans2(n+1);
-        for (int i = 0; i < n; i++)
-        {
-            for (int j = 1; j <= i+1; j++)
-            {
-                ans2[ans[i]].push_back(j);
-            }
-        }
-        for (size_t i = 1; i <= n; i++)
-        {
-            cout<<ans2[i].size()<<" ";
-            for(int x:ans2[i])
-            {
-                cout<<x<<" ";
-            }
-            cout<<"\n";
-        }
-        
+        solve();
     }
     return 0;
 }
