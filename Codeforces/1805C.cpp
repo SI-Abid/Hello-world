@@ -8,43 +8,36 @@ void solve()
     int n, m;
     cin >> n >> m;
     vector<ll> k(n);
+    ll mn, mx;
+    mn = 1e9;
+    mx = -1e9;
     for (int i = 0; i < n; i++)
+    {
         cin >> k[i];
+        mn = k[i] > 0 ? min(mn, k[i]) : mn;
+        mx = k[i] < 0 ? max(mx, k[i]) : mx;
+    }
     sort(k.begin(), k.end());
     while (m--)
     {
         ll a, b, c;
         cin >> a >> b >> c;
-        if (c == 0 or a * c < 0)
+        int idx = lower_bound(k.begin(), k.end(), b) - k.begin();
+        if (idx >= 0 and idx < n and (b - k[idx]) * (b - k[idx]) < 4 * a * c)
         {
-            cout << "NO\n";
+            cout << "YES\n";
+            cout << k[idx] << nl;
             continue;
         }
-        // y = ax^2+bx+c
-        double xx = b - (2LL * sqrt(a * c));
-        ll x = (ll)ceil(xx);
-        // if(x<0){
-        //     cout<<"NO\n";
-        //     continue;
-        // }
-        // cout<< x << " == "<<xx<< nl;
-        auto it = lower_bound(k.begin(), k.end(), xx + 1);
-        if (xx < 0)
+        idx--;
+        if (idx >= 0 and idx < n and (b - k[idx]) * (b - k[idx]) < 4 * a * c)
         {
-            it = lower_bound(k.begin(), k.end(), xx);
+            cout << "YES\n";
+            cout << k[idx] << nl;
+            continue;
         }
-        if (it == k.end())
-            cout << "NO\n";
-        else
-        {
-            if (*it == 0)
-                cout << "NO\n";
-            else
-            {
-                cout << "YES\n";
-                cout << *it << nl;
-            }
-        }
+        cout << "NO\n";
+        continue;
     }
     cout << nl;
 }
