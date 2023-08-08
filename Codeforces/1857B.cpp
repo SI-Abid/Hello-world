@@ -11,34 +11,36 @@ void solve()
     int i = 0;
     while (i < s.size() and s[i] < '5')
         i++;
-    if(i==s.size())
+    if (i == s.size())
     {
-        cout<<s<<nl;
+        cout << s << nl;
         return;
     }
-    int cnt=0;
-    for (int j = i; j >= 0; j--)
+    s = "0"+s;
+    int cnt = 0;
+    for (int j = i+1; j >= 0; j--)
     {
-        if(s[j]>='5')
+        if (s[j] >= '5')
         {
             cnt++;
-            s[j]='0';
-            if(j!=0)
+            s[j] = '0';
+            if (j != 0)
             {
-                s[j-1]+=1;
+                s[j - 1] += 1;
             }
         }
     }
+    if(s[0]=='0')s=s.substr(1);
     i = s.find_first_of('0');
-    if(i==0)
+    if (i == 0)
     {
-        s = "1"+string(s.size(),'0');
+        s = "1" + string(s.size(), '0');
     }
     else
     {
-        s = s.substr(0,i+1)+string(s.size()-i-1,'0');
+        s = s.substr(0, i + 1) + string(s.size() - i - 1, '0');
     }
-        cout<<s<<nl;
+    cout << s << nl;
     // cout<<cnt<<' '<<s<<nl;
 }
 
