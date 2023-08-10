@@ -33,22 +33,27 @@ void solve()
     // say a>=b
     vector<int> v(n);
     iota(v.begin(), v.end(), 1);
-    for (int i = 0; i < n; i++)
+    if (a == b)
     {
-        if (i == 0)
-            continue;
-        if (i + 1 < n)
+        for (int i = 0; i < a; i++)
         {
-            swap(v[i], v[i + 1]);
-            i++;
+            swap(v[2 * i + 1], v[2 * i + 2]);
         }
     }
-    if (a < b)
-        for (int i = 0; i < n; i++)
+    else if (a < b)
+    {
+        for (int i = 0; i < b; i++)
         {
-            v[i] = n - v[i] + 1;
+            swap(v[2 * i], v[2 * i + 1]);
         }
-
+    }
+    else
+    {
+        for (int i = 0; i < a; i++)
+        {
+            swap(v[n - 2 * i - 1], v[n - 2 * i - 2]);
+        }
+    }
     cout << v << nl;
 }
 
