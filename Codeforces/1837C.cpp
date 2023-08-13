@@ -19,9 +19,7 @@ signed main()
                 pos.push_back(i);
         }
         sort(pos.begin(), pos.end());
-        // for (auto x : pos)
-        //     cout << x << " ";
-        // cout << endl;
+
         int cur = 0;
         for (int i = 0; i < n; i++)
         {
