@@ -119,7 +119,7 @@ int main(int argc, char const *argv[])
 {
     UnitTest ut;
     Solution s;
-    vector<int> vec = {1, 8, 9}, ans = {3,7,8};
+    vector<int> vec = {1, 8, 9}, ans = {3, 7, 8};
     ListNode *head = ut.vectorToList(vec);
     ListNode *res = s.doubleIt(head);
     assert(ut.listToVector(res) == ans);
