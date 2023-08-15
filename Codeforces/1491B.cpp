@@ -7,15 +7,26 @@ void solve()
 {
     int n, u, v;
     cin >> n >> u >> v;
-    set<int> a;
-    while (n--)
+    vector<int> a(n);
+    for (int i = 0; i < n; i++)
     {
-        int x;
-        cin >> x;
-        a.insert(x);
+        cin >> a[i];
     }
-    if (a.size() == 1)
-        cout << u + v << nl;
+    for (int i = 0; i < n - 1; i++)
+    {
+        if (abs(a[i] - a[i + 1]) > 1)
+        {
+            cout << "0\n";
+            return;
+        }
+    }
+    bool flag = true;
+    for (int i = 0; i < n - 1; i++)
+    {
+        flag &= a[i] == a[i + 1];
+    }
+    if (flag)
+        cout << min(u, v) + v << nl;
     else
         cout << min(u, v) << nl;
 }
