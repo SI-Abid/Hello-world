@@ -14,7 +14,7 @@ void solve()
         cin >> x;
         a.insert(x);
     }
-    if (a.size() == 1)1200
+    if (a.size() == 1)
         cout << u + v << nl;
     else
         cout << min(u, v) << nl;
