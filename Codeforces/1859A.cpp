@@ -23,7 +23,6 @@ void solve()
         b.push_back(*it);
         it++;
     }
-    // cout << nl;
     while (it != a.cend())
     {
         c.push_back(*it);
