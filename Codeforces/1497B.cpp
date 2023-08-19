@@ -63,7 +63,7 @@ void solve()
     {
         a.push_back(k);
     }
-    cout << mp << nl << a << nl;
+    // cout << mp << nl << a << nl;
     int ans = 0;
     for (auto &&i : a)
     {
@@ -72,6 +72,8 @@ void solve()
             int x = mp[i];
             int y = mp[m - i];
             ans++;
+            if (i == 0)
+                continue;
             if (x == y)
             {
                 mp[i] = mp[m - i] = 0;
@@ -80,11 +82,15 @@ void solve()
             {
                 mp[i] -= (y + 1);
                 mp[m - i] = 0;
+                ans += mp[i];
+                mp[i] = 0;
             }
             else if (x < y)
             {
                 mp[i] = 0;
                 mp[m - i] -= (x + 1);
+                ans += mp[m - i];
+                mp[m - i] = 0;
             }
         }
     }
