@@ -2,57 +2,26 @@
 using namespace std;
 #define nl "\n"
 #define ll long long
+#include <ext/pb_ds/assoc_container.hpp>
+#include <ext/pb_ds/tree_policy.hpp>
+using namespace __gnu_pbds;
 
-template <typename T, typename U>
-ostream &operator<<(ostream &os, const pair<T, U> &p)
-{
-    return os << "(" << p.first << ", " << p.second << ")";
-}
+#define ordered_set tree<pair<ll, ll>, null_type, less<pair<ll, ll>>, rb_tree_tag, tree_order_statistics_node_update>
 
-template <typename T>
-ostream &operator<<(ostream &os, const vector<T> &v)
+void print(ordered_set s)
 {
-    os << "[";
-    for (int i = 0; i < v.size(); i++)
+    for (auto &&p : s)
     {
-        os << v[i];
-        if (i != v.size() - 1)
-            os << ", ";
+        cout << p.first << " " << p.second << ", ";
     }
-    return os << "]";
-}
-
-template <typename T, typename U>
-ostream &operator<<(ostream &os, const map<T, U> &m)
-{
-    os << "{";
-    for (auto it = m.begin(); it != m.end(); it++)
-    {
-        if (it != m.begin())
-            os << ", ";
-        os << it->first << "-> " << it->second;
-    }
-    return os << "}";
-}
-
-template <typename T>
-ostream &operator<<(ostream &os, const set<T> &s)
-{
-    os << "{";
-    for (auto it = s.begin(); it != s.end(); it++)
-    {
-        if (it != s.begin())
-            os << ", ";
-        os << *it;
-    }
-    return os << "}";
+    cout << nl;
 }
 
 void solve()
 {
     int n, q;
     cin >> n >> q;
-    set<pair<int, int>> row, col;
+    ordered_set row, col;
     while (q--)
     {
         int choice;
@@ -60,48 +29,74 @@ void solve()
         cin >> choice;
         if (choice == 1)
         {
-            cin >> x >> y;
-            if()
-            row[x]++;
-            col[y]++;
+            // cin >> x >> y;
+            scanf("%d %d", &x, &y);
+            if (row.empty() or col.empty())
+            {
+                row.insert({x, 1});
+                col.insert({y, 1});
+                continue;
+            }
+            auto it = row.lower_bound({x + 1, -1});
+            it--;
+            if (it->first == x)
+            {
+                row.erase(*it);
+                row.insert({x, it->second + 1});
+            }
+            else
+            {
+                row.insert({x, 1});
+            }
+            it = col.lower_bound({y + 1, -1});
+            it--;
+            if (it->first == y)
+            {
+                col.erase(*it);
+                col.insert({y, it->second + 1});
+            }
+            else
+            {
+                col.insert({y, 1});
+            }
         }
 
         else if (choice == 2)
         {
-            cin >> x >> y;
-            if (row[x] == 1)
-                row.erase(x);
-            else
-                row[x]--;
-            if (col[y] == 1)
-                col.erase(y);
-            else
-                col[y]--;
+            scanf("%d %d", &x, &y);
+            auto it = row.lower_bound({x, 1});
+            row.erase(*it);
+            if (it->second > 1)
+                row.insert({x, it->second - 1});
+            it = col.lower_bound({y, 1});
+            col.erase(*it);
+            if (it->second > 1)
+                col.insert({y, it->second - 1});
         }
 
         else
         {
             string s = "No";
             int x1, y1, x2, y2;
-            cin >> x1 >> y1 >> x2 >> y2;
-            map<int, int>::iterator a = row.find(x2);
-            map<int, int>::iterator b = row.find(x1);
+            scanf("%d %d %d %d", &x1, &y1,&x2, &y2);
+            ll a = row.order_of_key({x2, 1});
+            ll b = row.order_of_key({x1, 1});
 
-            if (a != row.end() and b != row.end() and b - a == x2 - x1)
+            if (a != row.size() and b != row.size() and a - b == x2 - x1 and row.find_by_order(a)->first == x2 and row.find_by_order(b)->first == x1)
                 s = "Yes";
 
-            a = col.find(y2);
-            b = col.find(y1);
-            if (a != col.end() and b != col.end())
+            a = col.order_of_key({y2, 1});
+            b = col.order_of_key({y1, 1});
+            if (a != col.size() and b != col.size() and a - b == y2 - y1 and col.find_by_order(a)->first == y2 and col.find_by_order(b)->first == y1)
                 s = "Yes";
 
-            // if (cnt == x2 - x1)
-            //     s = "Yes";
-            // cnt = col.find(y2) - col.find(y1);
-            // if (cnt == y2 - y1)
-            //     s = "Yes";
             puts(s.c_str());
         }
+        // puts("==row==");
+        // print(row);
+        // puts("==col==");
+        // print(col);
+        // puts("-----------");
     }
 }
 
