@@ -5,7 +5,14 @@ using namespace std;
 
 void solve()
 {
-    
+    int n;
+    cin >> n;
+    vector<int> a(n);
+    for (auto &x : a)
+        cin >> x;
+    sort(a.begin(), a.end());
+    n--;
+    cout << a[n / 2];
 }
 
 signed main()
