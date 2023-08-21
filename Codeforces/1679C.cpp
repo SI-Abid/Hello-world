@@ -78,7 +78,7 @@ void solve()
         {
             string s = "No";
             int x1, y1, x2, y2;
-            scanf("%d %d %d %d", &x1, &y1,&x2, &y2);
+            scanf("%d %d %d %d", &x1, &y1, &x2, &y2);
             ll a = row.order_of_key({x2, 1});
             ll b = row.order_of_key({x1, 1});
 
