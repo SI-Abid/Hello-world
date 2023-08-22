@@ -11,6 +11,7 @@ void solve()
     int k = s[0] - '0';
     for (int i = 0; i < s.size(); i++)
     {
+        if(s[i]>s[0])break;
         if (s[i] < s[0])
         {
             cout << ans + k - 1 << nl;
