@@ -3,24 +3,6 @@ using namespace std;
 #define nl "\n"
 #define ll long long
 
-map<int, int> dp;
-
-int rec(int n, int k, int a, int b)
-{
-    if (n == 1)
-        return 0;
-    if (dp.find(n) != dp.end())
-        return dp[n];
-    int ans = 0;
-    if (n % k == 0)
-    {
-        ans = min(rec(n / k, k, a, b) + b, rec(n - 1, k, a, b) + a);
-    }
-    else
-        ans = (rec(n - 1, k, a, b) + a);
-    return dp[n] = ans;
-}
-
 void solve()
 {
     int n, k, a, b;
