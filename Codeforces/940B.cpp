@@ -25,24 +25,28 @@ void solve()
 {
     int n, k, a, b;
     cin >> n >> k >> a >> b;
-    // memset(dp, -1, sizeof(dp));
-    // cout << rec(n, k, a, b);
-    int ans=0;
-    while(n>1)
+    if (k == 1)
     {
-        ans+=n%k*a;
-        n-=n%k;
-        if((n-n/k)*a>b)
+        cout << a * (n - 1);
+        return;
+    }
+    int ans = 0;
+    while (n > 1)
+    {
+        ans += n % k * a;
+        n -= n % k;
+        if ((n - n / k) * a > b)
         {
-            ans+=b;
-            n/=k;
+            ans += b;
+            n /= k;
         }
-        else{
-            ans+=(n-1)*a;
-            a=1;
+        else
+        {
+            ans += (n - 1) * a;
+            n = 1;
         }
     }
-    cout<<ans;
+    cout << ans;
 }
 
 signed main()
