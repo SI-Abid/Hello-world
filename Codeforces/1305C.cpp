@@ -1,26 +1,43 @@
-#include "bits/stdc++.h"
-#define uint unsigned int
+#include <bits/stdc++.h>
 using namespace std;
+#define nl "\n"
+#define ll long long
 
-int n, m, a[200000], prod=1;
-
-int main()
+void solve()
 {
-	cin>>n>>m;
-	for(int i=0; i<n; i++)
+	int n, m;
+	cin >> n >> m;
+	map<int, int> mp;
+	vector<int> a(n);
+	for (auto &x : a)
+		cin >> x;
+	sort(a.begin(), a.end());
+	if(n>m)
 	{
-		cin>>a[i];
+		puts("0");
+		return;
 	}
-	for(int i=0; i<n-1; i++)
+	ll prod = 1;
+	
+	for (int i = 0; i < n - 1; i++)
 	{
-		for(int j=i+1; j<n; j++)
+		for (int j = i + 1; j < n; j++)
 		{
-			prod*=max(a[i],a[j])-min(a[i],a[j]);
-			if(prod>45000)
-				prod %= m;
+			prod *= abs(a[j] - a[i]);
+			prod %= m;
 		}
 	}
-	prod %= m;
-	cout<<prod;
+	cout << prod << nl;
+}
+
+signed main()
+{
+	int _(1);
+	// cin >> _;
+	for (int tc = 1; tc <= _; tc++)
+	{
+		// printf("Case %d: ",tc);
+		solve();
+	}
 	return 0;
 }
