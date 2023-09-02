@@ -1,29 +1,25 @@
 for _ in range(int(input())):
     len = 0
-    mem = dict()
+    up = 0
+    mem = set()
     for x in input():
         if x == "+":
             len += 1
         elif x == "-":
-            if len == 0:
-                print("NO")
-                break
-            if len in mem:
-                mem.pop(len)
             len -= 1
-        elif x == "0" and len < 2:
-            print("NO")
-            break
+            mem.remove(len) if len in mem else 0
+            up = min(up, len)
         elif x == "1":
-            if len in mem and mem[len] == 0:
+            if mem:
                 print("NO")
                 break
-            for i in range(len):
-                mem[i + 1] = 1
-        elif x == "0":
-            if len in mem and mem[len] == 1:
+            else:
+                up = max(up, len)
+        elif x == "0" and not mem:
+            if max(up, 1) >= len:
                 print("NO")
                 break
-            mem[len] = 0
+            else:
+                mem.add(len - 1)
     else:
         print("YES")
