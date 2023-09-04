@@ -3,7 +3,10 @@ import math
 
 for _ in range(int(input())):
     p, a, b, c = map(int, input().split())
-    a = math.ceil(p / a) * a if a < p else a
-    b = math.ceil(p / b) * b if b < p else b
-    c = math.ceil(p / c) * c if c < p else c
-    print(min(a - p, b - p, c - p))
+    ans = 2 * 10**18
+    for x in [a, b, c]:
+        y = p % x
+        if y != 0:
+            y = x - y
+        ans = min(ans, y)
+    print(ans)
