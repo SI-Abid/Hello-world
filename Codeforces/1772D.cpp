@@ -3,7 +3,6 @@ using namespace std;
 #define nl "\n"
 #define ll long long
 
-
 void solve()
 {
     int n;
@@ -13,23 +12,28 @@ void solve()
     {
         cin >> v[i];
     }
-    if(is_sorted(v.begin(),v.end()))
+    if (is_sorted(v.begin(), v.end()))
     {
-        cout<<"0\n";
+        cout << "0\n";
         return;
     }
-    if(is_sorted(v.rbegin(),v.rend()))
+    if (is_sorted(v.rbegin(), v.rend()))
     {
-        cout<< (*max_element(v.rbegin(),v.rend()) + 1) << nl;
+        cout << (*max_element(v.rbegin(), v.rend()) + 1) << nl;
         return;
     }
-    int dscd=0,ascd;
-    for (int i = 1; i < n; i++)
-    {
-        
-    }
-    
-    cout<<"asdf\n";
+    int minimum = 0, maximum = 1e9;
+
+    for (int i = 0; i < n - 1; i++)
+        if (v[i] < v[i + 1])
+            maximum = min(maximum, (v[i] + v[i + 1]) / 2);
+        else if (v[i] > v[i + 1])
+            minimum = max(minimum, (v[i] + v[i + 1] + 1) / 2);
+
+    if (minimum <= maximum)
+        cout << maximum << '\n';
+    else
+        cout << "-1\n";
 }
 
 signed main()
