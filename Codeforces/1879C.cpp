@@ -10,7 +10,7 @@ void solve()
     string s;
     cin >> s;
     int n = s.size();
-    ll ans = 0;
+    ll ans = 1;
     ll cntt = 0;
     for (int i = 0; i < n - 1; i++)
     {
@@ -23,9 +23,10 @@ void solve()
                 i++;
             }
             cntt += cnt - 1;
-            ans = (ans + fac[cnt]) % mod;
+            ans = (ans * cnt) % mod;
         }
     }
+    ans = (ans * fac[cntt]) % mod;
     if (ans == 0 and cntt == 0)
         puts("0 1");
     else
