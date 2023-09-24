@@ -5,9 +5,37 @@ using namespace std;
 
 void solve()
 {
-    int n;cin>>n;vector<int>a(n);
-    for(auto &x:a)cin>>x;
-    
+    int n;
+    cin >> n;
+    vector<int> a(n);
+    for (auto &x : a)
+        cin >> x;
+    int cor = 0;
+    vector<bool> vis(n, 0);
+    for (int i = 0; i < min(n, 31); i++)
+    {
+        int mx = 0;
+        int idx = -1;
+        for (int j = 0; j < n; j++)
+        {
+            if (vis[j])
+                continue;
+            if ((cor | a[j]) > mx)
+            {
+                mx = (cor | a[j]);
+                idx = j;
+            }
+        }
+        vis[idx] = true;
+        cout << a[idx] << " ";
+        cor |= a[idx];
+    }
+    for (int i = 0; i < n; i++)
+    {
+        if (!vis[i])
+            cout << a[i] << " ";
+    }
+    cout << nl;
 }
 
 signed main()
