@@ -1,7 +1,5 @@
 input()
-a = input().split()
-b = input().split()
-c = input().split()
-[a.remove(x) for x in b]
-[b.remove(x) for x in c]
-print(*a, *b, sep="\n")
+a = sum(map(int, input().split()))
+b = sum(map(int, input().split()))
+c = sum(map(int, input().split()))
+print(a - b, b - c, sep="\n")
