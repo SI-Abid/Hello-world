@@ -7,7 +7,7 @@ void solve()
 {
     int n;
     cin >> n;
-    // map<int, int> s;
+    set<int> s;
     vector<set<int>> vs(n);
     for (size_t i = 0; i < n; i++)
     {
@@ -18,7 +18,7 @@ void solve()
             int y;
             cin >> y;
             vs[i].insert(y);
-            // s[y]++;
+            s.insert(y);
         }
     }
     if (n == 1)
@@ -27,21 +27,18 @@ void solve()
         return;
     }
     int ans = 0;
-    for (size_t i = 0; i < n; i++)
+    for (auto y : s)
     {
         set<int> xx;
         for (int j = 0; j < n; j++)
         {
-            if (i == j)
+            if (vs[j].find(y) != vs[j].end())
                 continue;
             for (auto x : vs[j])
                 xx.insert(x);
         }
         ans = max(ans, int(xx.size()));
     }
-
-    if (ans > 0)
-        ans--;
     cout << ans << nl;
 }
 
