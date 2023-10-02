@@ -2,6 +2,7 @@ import java.lang.*;
 
 private fun readLn() = readLine()!!
 private fun readInt() = readLn().toInt()
+private fun readStrings() = readLn().split(" ")
 private fun readInts() = readStrings().map { it.toInt() }
 
 fun main() {
@@ -28,7 +29,7 @@ fun solve() {
         a[u[i]]=maxOf(a[u[i]],w[i])
         a[v[i]]=maxOf(a[v[i]],w[i])
     }
-    for (i in 1..m) {
+    for (i in 0..m) {
         if(minOf(a[u[i]],a[v[i]])!=w[i]){
             println("NO")
             return
