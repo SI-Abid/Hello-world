@@ -1,24 +1,55 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
+#define ll long long
 
-signed main()
+ll hyp(ll a, ll b)
 {
-    freopen("input.txt","r",stdin);
-    freopen("myput.txt","w",stdout);
-    int n,x,y;
-    cin>>n>>x>>y;
-    while(n--)
+    ll x = a*a-b*b;
+    ll y = 2*a*b;
+    ll d = sqrt(x*x-y*y);
+    return d;
+}
+
+set<ll> st;
+void solve()
+{
+    ll n;
+    cin >> n;
+    for (ll i = 2; i * i <= n; i++)
     {
-        int a,b;
-        cin>>a>>b;
-        if((a+b)%2==(x+y)%2)
+        while (n % i == 0)
         {
-            puts("gese gi");
+            n /= i;
+            if (st.find(n) != st.end())
+            {
+                puts("YES");
+                return;
+            }
         }
-        else
+    }
+    if (st.find(n) != st.end())
+        puts("YES");
+    else
+        puts("NO");
+}
+
+int main()
+{
+    for (int i = 1; i <= 2500; i++)
+    {
+        for (int j = 1; j <= 2500; j++)
         {
-            puts("jaito na");
+            st.insert(hyp(i, j));
         }
+    }
+    // freopen("a1.out","w",stdout);
+    // for(auto x:st)cout<<x<<"\n";
+    // cout<<st.size()<<" "<<*st.rbegin()<<endl;
+    int t;
+    cin >> t;
+    while (t--)
+    {
+        solve();
     }
     return 0;
 }
