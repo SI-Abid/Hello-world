@@ -13,7 +13,7 @@ int main()
         cin >> n;
         string s;
         cin >> s;
-        n+=n;
+        n += n;
         int ans = 0;
         char last = '.';
         for (int i = 0; i < n; i++)
