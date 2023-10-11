@@ -10,7 +10,7 @@ void solve()
     cout << n * m << nl;
     for (int i = 0; i < n; i++)
         for (int j = 0; j < m; j++)
-            cout << (i or (j << 20)) << " \n"[j == m - 1];
+            cout << (i | (j << 20)) << " \n"[j == m - 1];
 }
 
 signed main()
