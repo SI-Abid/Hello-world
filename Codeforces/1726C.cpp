@@ -1,33 +1,31 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
 int main()
 {
     int t;
-    cin>>t;
-    for(int tc=1;tc<=t;tc++)
+    cin >> t;
+    for (int tc = 1; tc <= t; tc++)
     {
         // printf("Case %d: ",tc);
-    
+
         int n;
-        cin>>n;
+        cin >> n;
         string s;
-        cin>>s;
-        stack<char> st;
-        set<int> st1;
-        st.push(0);
-        int ans=0;
-        for(int i=0;i<n;i++)
+        cin >> s;
+        n+=n;
+        int ans = 0;
+        char last = '.';
+        for (int i = 0; i < n; i++)
         {
-            if(s[i]=='(')
-                st.push(s[i+1]);
-            else
+            if (s[i] == '(')
             {
-                st.pop();
-                st1.insert(st.top());
+                if (last != ')')
+                    ans++;
             }
+            last = s[i];
         }
-        cout<<st1.size()<<'\n';
+        cout << ans << '\n';
     }
     return 0;
 }
