@@ -3,7 +3,7 @@ using namespace std;
 #define nl "\n"
 #define ll long long
 
-const int mod = 1e9 + 1;
+const int mod = 1e9 + 7;
 
 void solve()
 {
@@ -13,10 +13,10 @@ void solve()
     {
         int x;
         cin >> x >> x >> x;
-        v or_eq x;
+        v |= x;
     }
     int pw = 1;
-    for (int i = 0; i < m; i++)
+    for (int i = 1; i < n; i++)
     {
         pw = (2LL * pw) % mod;
     }
