@@ -10,8 +10,8 @@ void solve()
     vector<int> a(n);
     for (auto &x : a)
         cin >> x;
-    vector<int> sorted, pre(n + 1, 0);
-    sorted = a;
+    vector<int> sorted=a;
+    vector<ll> pre(n + 1, 0);
     sort(sorted.begin(), sorted.end());
     for (int i = 0; i < n; i++)
     {
