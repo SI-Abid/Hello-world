@@ -10,6 +10,7 @@ void solve()
     vector<int> a(n);
     for (auto &x : a)
         cin >> x;
+    sort(a.begin(), a.end());
     if (a.front() == 0 and a.back() == 0)
     {
         puts("No");
