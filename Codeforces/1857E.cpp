@@ -5,12 +5,12 @@ using namespace std;
 
 void solve()
 {
-    int n;
+    ll n;
     cin >> n;
-    vector<int> a(n);
+    vector<ll> a(n);
     for (auto &x : a)
         cin >> x;
-    vector<int> sorted=a;
+    vector<ll> sorted=a;
     vector<ll> pre(n + 1, 0);
     sort(sorted.begin(), sorted.end());
     for (int i = 0; i < n; i++)
@@ -20,8 +20,8 @@ void solve()
     vector<ll> ans(n);
     for (int i = 0; i < n; i++)
     {
-        int x = a[i];
-        int idx = lower_bound(sorted.begin(), sorted.end(), x) - sorted.begin();
+        ll x = a[i];
+        ll idx = lower_bound(sorted.begin(), sorted.end(), x) - sorted.begin();
         ans[i] = idx * x - pre[idx] + (pre[n] - pre[idx]) - (n - idx) * x + n;
     }
     for (auto x : ans)
