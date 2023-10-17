@@ -5,8 +5,25 @@ using namespace std;
 
 void solve()
 {
-    double n;cin>>n;
-    cout<<setprecision(20)<< ceil(sqrt(3.0*n))<<nl;
+    ll n;
+    cin >> n;
+    auto sum = [](ll n) -> ll
+    {
+        return n * (n + 1) / 2;
+    };
+    ll l = 1, r = 2648956421, ans;
+    while (l <= r)
+    {
+        ll mid = (l + r) / 2;
+        if (sum(mid - 1) > n)
+            r = mid - 1;
+        else
+        {
+            l = mid + 1;
+            ans = mid;
+        }
+    }
+    cout << ans + n - sum(ans - 1) << nl;
 }
 
 signed main()
