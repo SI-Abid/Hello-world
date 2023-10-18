@@ -5,21 +5,22 @@ using namespace std;
 
 void solve()
 {
-    int n;cin>>n;
-    if(n%2==0){
+    int n;
+    cin >> n;
+    if (n % 2 == 0)
+    {
         puts("No");
         return;
     }
     puts("Yes");
-    for (int i = 1; i <= (n+1)/2; i++)
+    for (int i = 1; i <= (n + 1) / 2; i++)
     {
-        cout<<i<<" "<<2*n-2*i+2<<nl;
+        cout << i << " " << 2 * n - 2 * i + 2 << nl;
     }
-    for (int i = n; i > (n+1)/2; i--)
+    for (int i = n; i > (n + 1) / 2; i--)
     {
-        cout<<i<<" "<<3*n-2*i+2<<nl;
+        cout << i << " " << 3 * n - 2 * i + 2 << nl;
     }
-    
 }
 
 signed main()
