@@ -24,7 +24,7 @@ void solve()
         cout << "0\n";
         return;
     }
-    int ans = 0;
+    ll ans = 0;
     int med = sheep[sheep.size() / 2];
     for (auto x : sheep)
     {
