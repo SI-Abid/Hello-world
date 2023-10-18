@@ -5,27 +5,32 @@ using namespace std;
 
 void solve()
 {
-    int n;cin>>n;
-    string s;cin>>s;
-    vector<int>sheep;
+    int n;
+    cin >> n;
+    string s;
+    cin >> s;
+    vector<int> sheep;
     for (int i = 0; i < n; i++)
     {
-        if(s[i]=='*')sheep.push_back(i);
+        if (s[i] == '*')
+            sheep.push_back(i);
     }
     for (int i = 0; i < sheep.size(); i++)
     {
-        sheep[i]-=i;
+        sheep[i] -= i;
     }
-    if(sheep.empty()){
-        cout<<"0\n";
+    if (sheep.empty())
+    {
+        cout << "0\n";
         return;
     }
-    int ans=0;
-    int med=sheep[sheep.size()/2];
-    for(auto x:sheep){
-        ans+=abs(med-x);
+    int ans = 0;
+    int med = sheep[sheep.size() / 2];
+    for (auto x : sheep)
+    {
+        ans += abs(med - x);
     }
-    cout<<ans<<nl;
+    cout << ans << nl;
 }
 
 signed main()
