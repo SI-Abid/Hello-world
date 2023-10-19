@@ -8,7 +8,7 @@ void solve()
     int n;
     cin >> n;
     vector<int> a(n);
-    map<int, int> mp;
+    map<ll, ll> mp;
     for (auto x : a)
     {
         cin >> x;
@@ -20,7 +20,7 @@ void solve()
     {
         ll x, y;
         cin >> x >> y;
-        auto ans = [&]() -> ll
+        ll ans = [&]() -> ll
         {
             ll lowroot = x * x - 4 * y;
             if (lowroot < 0)
