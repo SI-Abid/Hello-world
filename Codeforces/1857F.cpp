@@ -20,7 +20,7 @@ void solve()
     {
         ll x, y;
         cin >> x >> y;
-        ll ans = [&]() -> ll
+        auto ans = [&]() -> ll
         {
             ll lowroot = x * x - 4 * y;
             if (lowroot < 0)
