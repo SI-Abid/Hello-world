@@ -37,7 +37,7 @@ void solve()
                         puts("YES");
                         return;
                     }
-                    if (i != j and j != k and mod[i] and mod[j] and mod[k])
+                    if (i != j and j != k and i!=k and mod[i] and mod[j] and mod[k])
                     {
                         puts("YES");
                         return;
