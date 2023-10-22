@@ -1,6 +1,36 @@
 #include <bits/stdc++.h>
 using namespace std;
 typedef long long ll;
+ll dp[101][101][2];
+ll n;
+bool rec(ll evn, ll odd, ll cur)
+{
+    if (evn == 0 and odd == 0)
+        return (cur == 0);
+    if (dp[evn][odd][cur] + 1)
+        return dp[evn][odd][cur];
+
+    if (((evn + odd) % 2) == (n % 2))
+    {
+        bool ans = 0;
+
+        if (evn > 0)
+            ans |= rec(evn - 1, odd, cur);
+        if (odd > 0)
+            ans |= rec(evn, odd - 1, (cur + 1) % 2);
+
+        return dp[evn][odd][cur] = ans;
+    }
+
+    bool ans = 1;
+
+    if (evn > 0)
+        ans &= rec(evn - 1, odd, cur);
+    if (odd > 0)
+        ans &= rec(evn, odd - 1, cur);
+
+    return dp[evn][odd][cur] = ans;
+}
 int main()
 {
     int t;
@@ -8,8 +38,6 @@ int main()
     for (int tc = 1; tc <= t; tc++)
     {
         // printf("Case %d: ",tc);
-
-        int n;
         cin >> n;
         vector<ll> a(n);
         int odd = 0, even = 0;
@@ -17,60 +45,22 @@ int main()
         {
             cin >> a[i];
             if (a[i] % 2 == 0)
-            {
                 even++;
-            }
             else
-            {
                 odd++;
-            }
         }
-        if (odd == 0)
+        for (int i = 0; i < n + 2; i++)
         {
-            cout << "Alice\n";
-        }
-        else if(even==0)
-        {
-            if(n%4==1)
+            for (int j = 0; j < n + 2; j++)
             {
-                cout<<"Bob\n";
-            }
-            else
-            {
-                cout<<"Alice\n";
+                dp[i][j][0] = -1;
+                dp[i][j][1] = -1;
             }
         }
-        else if(odd==1 and even==1)
-        {
-            cout<<"Alice\n";
-        }
-        else if (odd == even)
-        {
-            cout << "Bob\n";
-        }
-        else if(n>2 and odd==1)
-        {
-            if(n%2==0)
-            {
-                cout<<"Alice\n";
-            }
-            else
-            {
-                cout<<"Bob\n";
-            }
-        }
+        if (rec(even, odd, 0))
+            puts("Alice");
         else
-        {
-            int ans = (odd + 1) / 2;
-            if (ans and (ans) % 2 == 0)
-            {
-                cout << "Alice\n";
-            }
-            else
-            {
-                cout << "Bob\n";
-            }
-        }
+            puts("Bob");
     }
     return 0;
 }
