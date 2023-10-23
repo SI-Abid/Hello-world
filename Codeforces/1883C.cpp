@@ -40,27 +40,23 @@ void solve()
     else if (k == 4)
     {
         int two = 0;
+        int thr = 0;
         for (auto x : a)
         {
+            if (x % 4 == 3)
+                thr++;
             while (x % 2 == 0)
             {
                 x /= 2;
                 two++;
             }
-            if (two > 1)
-            {
-                puts("0");
-                return;
-            }
         }
-        if (mp[3] > 0)
+        if (two > 1)
+            puts("0");
+        else if (two > 0 or thr > 0)
             puts("1");
-        else if (mp[2] > 0 and mp[1] > 1)
-            puts("1");
-        else if (mp[1] > 1)
-            puts("2");
         else
-            puts("3");
+            puts("2");
         return;
     }
     else
