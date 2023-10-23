@@ -49,9 +49,9 @@ int main()
             else
                 odd++;
         }
-        for (int i = 0; i < n + 2; i++)
+        for (int i = 0; i <= n; i++)
         {
-            for (int j = 0; j < n + 2; j++)
+            for (int j = 0; j <= n; j++)
             {
                 dp[i][j][0] = -1;
                 dp[i][j][1] = -1;
