@@ -7,20 +7,15 @@ void solve()
 {
     int n;
     cin >> n;
-    vector<int> a(n);
-    for (auto &x : a)
-        cin >> x;
-    int ans = 0;
-    int mx = -(1e9 + 5);
-    for (auto x : a)
+    int a[n];
+    for (int i = 0; i < n; i++)
     {
-        ans = max(ans, mx - x);
-        mx = max(mx, x);
+        cin >> a[i];
     }
-    if (ans == 0)
-        puts("0");
+    if (a[0] < a[n - 1])
+        puts("YES");
     else
-        cout << 32 - __builtin_clz(ans) << nl;
+        puts("NO");
 }
 
 signed main()
