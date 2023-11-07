@@ -5,41 +5,34 @@ using namespace std;
 
 void solve()
 {
-    int n, k;
-    cin >> n >> k;
-    map<int, int> cnt;
-    int h = 0;
-    int need = 1e9;
-    for (int i = 0; i < n; i++)
-    {
-        int x;
-        cin >> x;
-        cnt[x]++;
-        h = max(x, h);
-        need = min(x, need);
-    }
-    int pos = 2e5 + 8;
-    int ans = 0;
-    ll sum = 0;
-    int c = 0;
-    while (0 == 0)
-    {
-        ll x = sum - c * 1LL * (pos - 1);
-        if (x > k)
-        {
-            ans++;
-            h = pos;
-            sum = pos * 1LL * c;
+    int N, K;
+    cin >> N >> K;
+    vector<int> H(N);
+ 
+    for (int &h : H)
+        scanf("%d", &h);
+ 
+    sort(H.rbegin(), H.rend());
+    int goal = H.back();
+    int index = 0, count = 0, slices = 0;
+ 
+    for (int height = H[0]; height >= goal; height--) {
+        while (index < N && H[index] > height)
+            index++;
+ 
+        if (count + index > K) {
+            count = 0;
+            slices++;
         }
-        pos--;
-        if (pos == need)
-            break;
-        c = +cnt[pos];
-        sum += cnt[pos] * 1LL * pos;
+ 
+        count += index;
     }
-    if (h != need)
-        ans++;
-    cout << ans << nl;
+ 
+    if (count > 0) {
+        count = 0;
+        slices++;
+    }
+    cout << slices << nl;
 }
 
 signed main()
