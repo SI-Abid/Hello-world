@@ -7,9 +7,22 @@ void solve()
 {
     int n;
     cin >> n;
-    string s;
-    cin >> s;
-    cout << s[n-1] << nl;
+    vector<int> a(n);
+    map<int, int> mp;
+    for (int i = 0; i < n; i++)
+    {
+        cin >> a[i];
+        mp[a[i]]++;
+    }
+    int odd = 0;
+    for (auto [k, v] : mp)
+        if (v & 1)
+            odd++;
+
+    if (odd ==1 )
+        puts("-1");
+    else
+        puts("0");
 }
 
 signed main()

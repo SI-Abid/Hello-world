@@ -7,9 +7,19 @@ void solve()
 {
     int n;
     cin >> n;
-    string s;
-    cin >> s;
-    cout << s[n-1] << nl;
+    n--;
+    if (n % 3 == 0)
+    {
+        puts("First");
+        return;
+    }
+    n += 2;
+    if (n % 3 == 0)
+    {
+        puts("First");
+        return;
+    }
+    puts("Second");
 }
 
 signed main()
@@ -22,4 +32,4 @@ signed main()
         solve();
     }
     return 0;
-}
+}   
