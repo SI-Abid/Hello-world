@@ -5,8 +5,9 @@ using namespace std;
 
 void solve()
 {
-    int a,b,c;cin>>a>>b>>c;
-    cout<<(a^b^c)<<nl;
+    int a, b, c;
+    cin >> a >> b >> c;
+    cout << (a xor b xor c) << nl;
 }
 
 signed main()
